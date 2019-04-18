@@ -1,0 +1,8 @@
+.project
+.settings/
+Debug
+.cproject
+.metadata/
+*.lgf
+*.tar.gz
+*.flv
