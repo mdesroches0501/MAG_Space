@@ -18,17 +18,17 @@ public:
 	Engine();
 	virtual ~Engine();
 
-	EntityMgr *entityMgr;
-	GameMgr   *gameMgr;
-	GfxMgr    *gfxMgr;
-	InputMgr  *inputMgr;
-
 	void Init();
 	void Run();
 	void TickAll(float dt);
 	void Cleanup();
-
-	bool keepRunning;
+	
+	bool m_KeepRunning;
+	
+	EntityMgr *m_EntityMgr;
+	GameMgr   *m_GameMgr;
+	GfxMgr    *m_GfxMgr;
+	InputMgr  *m_InputMgr;
 };
 
 #endif /* ENGINE_H_ */

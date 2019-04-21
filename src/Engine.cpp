@@ -6,18 +6,18 @@
  */
 
 #include <Engine.h>
-#include <EntityMgr.h>
-#include <GameMgr.h>
-#include <GfxMgr.h>
-#include <InputMgr.h>
+#include <Managers/EntityMgr.h>
+#include <Managers/GameMgr.h>
+#include <Managers/GfxMgr.h>
+#include <Managers/InputMgr.h>
 
 Engine::Engine() {
-	entityMgr = 0; //null
-	gameMgr   = 0;
-	gfxMgr    = 0;
-	inputMgr  = 0;
+	m_EntityMgr = 0; //null
+	m_GameMgr   = 0;
+	m_GfxMgr    = 0;
+	m_InputMgr  = 0;
 
-	keepRunning = true;
+	m_KeepRunning = true;
 
 }
 
@@ -26,30 +26,30 @@ Engine::~Engine() {
 }
 
 void Engine::Init(){
-	entityMgr = new EntityMgr(this);
-	gameMgr   = new GameMgr(this);
-	gfxMgr    = new GfxMgr(this);
-	inputMgr  = new InputMgr(this);
+	m_EntityMgr = new EntityMgr(this);
+	m_GameMgr   = new GameMgr(this);
+	m_GfxMgr    = new GfxMgr(this);
+	m_InputMgr  = new InputMgr(this);
 
 	//--------------------------------------------------------------
-	entityMgr->Init();
-	gfxMgr->Init();
-	inputMgr->Init(); // must initialize AFTER gfx manager
-	gameMgr->Init();
+	m_EntityMgr->Init();
+	m_GfxMgr->Init();
+	m_InputMgr->Init(); // must initialize AFTER gfx manager
+	m_GameMgr->Init();
 
 	//--------------------------------------------------------------
-	entityMgr->LoadLevel();
-	gfxMgr->LoadLevel();
-	inputMgr->LoadLevel();
-	gameMgr->LoadLevel();
+	m_EntityMgr->LoadLevel();
+	m_GfxMgr->LoadLevel();
+	m_InputMgr->LoadLevel();
+	m_GameMgr->LoadLevel();
 }
 
 
 void Engine::TickAll(float dt){
-	gfxMgr->Tick(dt);
-	inputMgr->Tick(dt);
-	entityMgr->Tick(dt);
-	gameMgr->Tick(dt);
+	m_GfxMgr->Tick(dt);
+	m_InputMgr->Tick(dt);
+	m_EntityMgr->Tick(dt);
+	m_GameMgr->Tick(dt);
 }
 
 
@@ -61,7 +61,7 @@ void Engine::Run(){
 	float newTime = timer->getMicroseconds()/MICROSECONDS_PER_SECOND;
 	float dt = newTime - oldTime;
 
-	while(keepRunning){
+	while(m_KeepRunning){
 
 		TickAll(dt);
 
@@ -74,9 +74,9 @@ void Engine::Run(){
 }
 
 void Engine::Cleanup(){
-	inputMgr->Stop();
-	gfxMgr->Stop();
-	entityMgr->Stop();
-	gameMgr->Stop();
+	m_InputMgr->Stop();
+	m_GfxMgr->Stop();
+	m_EntityMgr->Stop();
+	m_GameMgr->Stop();
 }
 
