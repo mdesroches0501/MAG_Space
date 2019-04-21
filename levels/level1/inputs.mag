@@ -1,7 +1,7 @@
 start
 @ player1
 # SPACE SHOOT
-# P PITCH_UP
+# W PITCH_UP
 # S PITCH_DOWN
 # A YAW_LEFT
 # D YAW_RIGHT

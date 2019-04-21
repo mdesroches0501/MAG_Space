@@ -28,7 +28,10 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
     m_SceneNode = 0;
     m_CameraNode = 0;
     m_OgreEntity = 0;
-
+    
+    m_PlaySound = false;
+    m_AuioId = 0;
+    
     Renderable* renderable = new Renderable(this, RENDERABLE);
     m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::RENDERABLE, (Aspect*)renderable));
 }
@@ -40,14 +43,18 @@ Entity381::~Entity381()
 
 void Entity381::Init()
 {
-    m_OgreEntity = m_Engine->m_GfxMgr->mSceneMgr->createEntity(m_Meshfilename);
-    m_SceneNode = m_Engine->m_GfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(m_Position);
+    m_OgreEntity = m_Engine->m_GfxMgr->m_SceneMgr->createEntity(m_Meshfilename);
+    m_SceneNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode(m_Position);
     
     m_CameraNode = m_SceneNode->createChildSceneNode();
     m_CameraNode->yaw(Ogre::Radian(Ogre::Degree(-90)));
     m_CameraNode->translate(-200, 75, 0);
 
     m_SceneNode->attachObject(m_OgreEntity);
+    
+    m_SoundFile = "Boat-Sound.wav";
+
+    m_AuioId = 0;
 }
 
 void Entity381::Tick(float dt)

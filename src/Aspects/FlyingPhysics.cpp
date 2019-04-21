@@ -53,6 +53,11 @@ void FlyingPhysics::Tick(float dt)
     flyingEntity->m_Velocity.y = Ogre::Math::Sin(Ogre::Degree(flyingEntity->m_Pitch)) 
                                * flyingEntity->m_Speed;
     
+    if(flyingEntity->m_Name == "none")
+    {
+        std::cout << "x: " << flyingEntity->m_Velocity.x << " y: " << flyingEntity->m_Velocity.y << " z: " << flyingEntity->m_Velocity.z << std::endl;
+    }
+    
     //This does not change!
     flyingEntity->m_Position = flyingEntity->m_Position + flyingEntity->m_Velocity * dt;
 

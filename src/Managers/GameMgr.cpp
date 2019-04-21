@@ -8,8 +8,10 @@
 #include <Engine.h>
 #include <Managers/GameMgr.h>
 #include <Managers/EntityMgr.h>
+#include <Managers/SoundMgr.h>
 #include <Managers/InputMgr.h>
 #include <Managers/GfxMgr.h>
+#include <Entities/Entity381.h>
 #include <Utilities/Types381.h>
 
 #include <iostream>
@@ -37,23 +39,25 @@ void GameMgr::Init()
 
 void GameMgr::LoadLevel(std::string levelLocation)
 {
-    m_Engine->m_GfxMgr->mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
+    m_Engine->m_GfxMgr->m_SceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
-    m_Engine->m_GfxMgr->mCamera->lookAt(Ogre::Vector3(0, 0, 0));
-    Ogre::Light* light = m_Engine->m_GfxMgr->mSceneMgr->createLight("MainLight");
+    m_Engine->m_GfxMgr->m_Camera->lookAt(Ogre::Vector3(0, 0, 0));
+    Ogre::Light* light = m_Engine->m_GfxMgr->m_SceneMgr->createLight("MainLight");
     light->setPosition(20.0, 80.0, 50.0);
 
     // a fixed point in the ocean so you can see relative motion
 
-    Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->mSceneMgr->createEntity("robot.mesh");
-    Ogre::SceneNode* sceneNode = m_Engine->m_GfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 100, -200));
+    Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->m_SceneMgr->createEntity("robot.mesh");
+    Ogre::SceneNode* sceneNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 100, -200));
     sceneNode->attachObject(ogreEntityFixed);
     sceneNode->showBoundingBox(true);
 
     // A node to attach the camera to so we can move the camera node instead of the camera.
-    cameraNode = m_Engine->m_GfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
+    cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode();
     cameraNode->setPosition(0, 200, 500);
-    cameraNode->attachObject(m_Engine->m_GfxMgr->mCamera);
+    //cameraNode->attachObject(m_Engine->m_GfxMgr->mCamera);
+    m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->attachObject(m_Engine->m_GfxMgr->m_Camera);
+    
 
     m_Engine->m_GfxMgr->MakeGround();
     m_Engine->m_GfxMgr->MakeSky();

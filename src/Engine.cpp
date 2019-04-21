@@ -7,6 +7,7 @@
 
 #include <Engine.h>
 #include <Managers/EntityMgr.h>
+#include <Managers/SoundMgr.h>
 #include <Managers/GameMgr.h>
 #include <Managers/GfxMgr.h>
 #include <Managers/InputMgr.h>
@@ -16,6 +17,7 @@ Engine::Engine() {
 	m_GameMgr   = 0;
 	m_GfxMgr    = 0;
 	m_InputMgr  = 0;
+	m_SoundMgr  = 0;
 
 	m_KeepRunning = true;
 
@@ -30,17 +32,20 @@ void Engine::Init(){
 	m_GameMgr   = new GameMgr(this);
 	m_GfxMgr    = new GfxMgr(this);
 	m_InputMgr  = new InputMgr(this);
+	m_SoundMgr  = new SoundMgr(this);
 
 	//--------------------------------------------------------------
 	m_EntityMgr->Init();
 	m_GfxMgr->Init();
 	m_InputMgr->Init(); // must initialize AFTER gfx manager
+	m_SoundMgr->Init();
 	m_GameMgr->Init();
 
 	//--------------------------------------------------------------
 	m_EntityMgr->LoadLevel("levels/level1/");
 	m_GfxMgr->LoadLevel("levels/level1/");
 	m_InputMgr->LoadLevel("levels/level1/");
+	m_SoundMgr->LoadLevel("levels/level1/");
 	m_GameMgr->LoadLevel("levels/level1/");
 }
 
@@ -49,6 +54,7 @@ void Engine::TickAll(float dt){
 	m_GfxMgr->Tick(dt);
 	m_InputMgr->Tick(dt);
 	m_EntityMgr->Tick(dt);
+	m_SoundMgr->Tick(dt);
 	m_GameMgr->Tick(dt);
 }
 
@@ -77,6 +83,7 @@ void Engine::Cleanup(){
 	m_InputMgr->Stop();
 	m_GfxMgr->Stop();
 	m_EntityMgr->Stop();
+	m_SoundMgr->Stop();
 	m_GameMgr->Stop();
 }
 

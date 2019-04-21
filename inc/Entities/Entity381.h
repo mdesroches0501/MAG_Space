@@ -42,6 +42,11 @@ public:
     Ogre::Vector3 m_Position;
     Ogre::Vector3 m_Velocity;
     
+    //sound
+    std::string m_SoundFile;
+    bool m_PlaySound;
+    unsigned int m_AuioId;
+    
     float m_Yaw, m_Roll, m_Pitch;
 
     EntityTypes m_EntityType;

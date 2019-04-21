@@ -8,6 +8,7 @@
 
 #include <Engine.h>
 #include <Managers/InputMgr.h>
+#include <Managers/SoundMgr.h>
 #include <Managers/GfxMgr.h>
 #include <Managers/EntityMgr.h>
 #include <Managers/GameMgr.h>
@@ -34,7 +35,7 @@ void InputMgr::Init()
     size_t windowHandle = 0;
     std::ostringstream windowHandleStr;
 
-    m_Engine->m_GfxMgr->mWindow->getCustomAttribute("WINDOW", &windowHandle);
+    m_Engine->m_GfxMgr->m_Window->getCustomAttribute("WINDOW", &windowHandle);
     windowHandleStr << windowHandle;
     pl.insert(std::make_pair(std::string("WINDOW"), windowHandleStr.str()));
     // insert the following lines right before calling mInputSystem = OIS::InputManager::createInputSystem( paramList );
@@ -58,7 +59,7 @@ void InputMgr::Init()
     int left, top;
     unsigned int width, height, depth;
 
-    m_Engine->m_GfxMgr->mWindow->getMetrics(width, height, depth, left, top);
+    m_Engine->m_GfxMgr->m_Window->getMetrics(width, height, depth, left, top);
     const OIS::MouseState &ms = m_Mouse->getMouseState();
     ms.width = width;
     ms.height = height;

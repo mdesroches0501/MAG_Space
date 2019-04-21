@@ -42,10 +42,10 @@ public:
     void CreateEntityFromFile(std::ifstream& entityFile);
     void CreateEntityOfTypeAtPosition(EntityTypes type, Ogre::Vector3 pos, std::string name);
 
+    std::vector<Entity381*> m_Entities;
+
 private:
     void CreateEntity(std::string meshfilename, Ogre::Vector3 pos);
-
-    std::vector<Entity381*> m_Entities;
     
     std::map<std::string, EntityTypes> entityTypesMap;
     

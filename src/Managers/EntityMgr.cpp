@@ -7,6 +7,7 @@
 
 #include <Engine.h>
 #include <Managers/EntityMgr.h>
+#include <Managers/SoundMgr.h>
 #include <Managers/InputMgr.h>
 #include <Managers/GameMgr.h>
 #include <Managers/GfxMgr.h>

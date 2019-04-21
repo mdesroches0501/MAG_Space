@@ -31,19 +31,19 @@ public:
 	void Stop();
 
 	void MakeGround();
-	Ogre::Plane oceanSurface;
-	float oceanHeight;
+	Ogre::Plane m_OceanSurface;
+	float m_OceanHeight;
 	void MakeSky();
 
 	//Ogre related stuff
-	Ogre::Root* mRoot;
-	Ogre::String mResourcesCfg;
-	Ogre::String mPluginsCfg;
-	Ogre::RenderWindow* mWindow;
-	Ogre::SceneManager* mSceneMgr;
-	Ogre::Camera* mCamera;
+	Ogre::Root* m_Root;
+	Ogre::String m_ResourcesCfg;
+	Ogre::String m_PluginsCfg;
+	Ogre::RenderWindow* m_Window;
+	Ogre::SceneManager* m_SceneMgr;
+	Ogre::Camera* m_Camera;
 	
-	bool firstPerson;
+	bool m_FirstPerson;
 
 };
 
