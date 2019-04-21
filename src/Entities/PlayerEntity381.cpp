@@ -10,8 +10,8 @@
 #include <Entities/PlayerEntity381.h>
 #include <Aspects/InputAspect.h>
 
-PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, int ident)
-        : FlyingEntity381(engine, pos, ident)
+PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
+        : FlyingEntity381(engine, pos, name)
 {
     m_Meshfilename = "banshee.mesh";
     m_EntityType = PLAYER_TYPE;
@@ -21,8 +21,7 @@ PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, int ident)
     m_MinSpeed = 20;
     m_MaxSpeed = 100;
 
-    m_Altitude = 20;
-    m_Position.y = 20;
+    m_Altitude = m_Position.y;
     m_MaxAltitude = 1000;
     m_MinAltitude = 10;
     

@@ -26,7 +26,7 @@ public:
 	virtual void windowClosed(Ogre::RenderWindow* rw);
 //---------------
 	void Init();
-	void LoadLevel();
+	void LoadLevel(std::string levelLocation);
 	void Tick(float dt);
 	void Stop();
 

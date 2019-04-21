@@ -38,10 +38,10 @@ void Engine::Init(){
 	m_GameMgr->Init();
 
 	//--------------------------------------------------------------
-	m_EntityMgr->LoadLevel();
-	m_GfxMgr->LoadLevel();
-	m_InputMgr->LoadLevel();
-	m_GameMgr->LoadLevel();
+	m_EntityMgr->LoadLevel("levels/level1/");
+	m_GfxMgr->LoadLevel("levels/level1/");
+	m_InputMgr->LoadLevel("levels/level1/");
+	m_GameMgr->LoadLevel("levels/level1/");
 }
 
 

@@ -1,0 +1,17 @@
+start
+@ player1
+# SPACE SHOOT
+# P PITCH_UP
+# S PITCH_DOWN
+# A YAW_LEFT
+# D YAW_RIGHT
+end
+
+start
+@ player2
+# SPACE SHOOT
+# UP PITCH_UP
+# DOWN PITCH_DOWN
+# LEFT YAW_LEFT
+# RIGHT YAW_RIGHT
+end

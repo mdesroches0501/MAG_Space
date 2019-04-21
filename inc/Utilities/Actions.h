@@ -10,6 +10,9 @@
 #ifndef INC_UTILITIES_ACTIONS_H_
 #define INC_UTILITIES_ACTIONS_H_
 
+#include <map>
+#include <string>
+
 enum Actions
 {
 	SHOOT,
@@ -38,6 +41,7 @@ enum Actions
 	TOGGLE_DEBUG,
 };
 
+extern std::map<std::string, Actions> ActionMap;
 
 
 #endif /* INC_UTILITIES_ACTIONS_H_ */

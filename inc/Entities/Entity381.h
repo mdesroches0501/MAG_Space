@@ -23,7 +23,7 @@
 class Entity381
 {
 public:
-    Entity381(Engine *engine, Ogre::Vector3 pos, int identity);
+    Entity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~Entity381();
 
     void Init();
@@ -32,7 +32,6 @@ public:
     Engine *m_Engine;
 
     //static data
-    int m_Identity;
     std::string m_Name;
     std::string m_Meshfilename;
     Ogre::SceneNode* m_SceneNode;

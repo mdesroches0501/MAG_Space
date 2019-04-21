@@ -47,6 +47,7 @@ void InputAspect::Tick(float dt)
                     
                 case PITCH_UP:
                     m_PlayerEntity->m_DesiredPitch += m_PlayerEntity->m_PitchRate;
+                    std::cout << "Pitch Up" << std::endl;
                     break;
                 case PITCH_DOWN:
                     m_PlayerEntity->m_DesiredPitch -= m_PlayerEntity->m_PitchRate;

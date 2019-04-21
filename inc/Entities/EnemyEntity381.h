@@ -21,7 +21,7 @@
 class EnemyEntity381 : public FlyingEntity381
 {
 public:
-    EnemyEntity381(Engine *engine, Ogre::Vector3 pos, int ident);
+    EnemyEntity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~EnemyEntity381();
 };
 

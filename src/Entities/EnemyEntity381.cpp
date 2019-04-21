@@ -10,8 +10,8 @@
 #include <Aspects/UnitAI.h>
 #include <Entities/EnemyEntity381.h>
 
-EnemyEntity381::EnemyEntity381(Engine *engine, Ogre::Vector3 pos, int ident)
-        : FlyingEntity381(engine, pos, ident)
+EnemyEntity381::EnemyEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
+        : FlyingEntity381(engine, pos, name)
 {
     m_Meshfilename = "banshee.mesh";
     m_EntityType = ENEMY_TYPE;

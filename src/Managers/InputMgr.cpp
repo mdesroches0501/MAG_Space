@@ -78,9 +78,28 @@ void InputMgr::Init()
     }
 }
 
-void InputMgr::LoadLevel()
+void InputMgr::LoadLevel(std::string levelLocation)
 {
-
+    std::ifstream levelEntitiesFile;
+    levelEntitiesFile.open(levelLocation + "inputs.mag");
+    if(levelEntitiesFile.is_open() && m_Engine->m_KeepRunning)
+    {
+        std::string line;
+        while(getline(levelEntitiesFile, line))
+        {
+            boost::algorithm::to_lower(line);
+            if(line == "start")
+            {
+                AssignInputsFromFile(levelEntitiesFile);
+            }
+        }
+        
+        levelEntitiesFile.close();
+    }
+    else
+    {
+        m_Engine->m_KeepRunning = false;
+    }
 }
 
 void InputMgr::Tick(float dt)
@@ -106,6 +125,42 @@ void InputMgr::Stop()
     }
 }
 
+
+void InputMgr::AssignInputsFromFile(std::ifstream& levelEntitiesFile)
+{
+    std::string line;
+    PlayerEntity381* entity = NULL;
+    bool entityFound = false;
+    
+    while(getline(levelEntitiesFile, line))
+    {
+        boost::algorithm::to_lower(line);
+        if(line == "end")
+        {
+            break;
+        }
+        
+        std::vector<std::string> tokens;
+        boost::algorithm::split(tokens, line, boost::is_any_of(" "));
+        
+        if(tokens.size() >= 2 && tokens[0] == "@")
+        {
+            entity = m_Engine->m_EntityMgr->GetPlayerByName(tokens[1]);
+            if(entity != NULL)
+            {                
+                entityFound = true;
+            }
+        }
+        else if(entityFound && tokens.size() >= 3 && tokens[0] == "#")
+        {
+            boost::algorithm::to_upper(tokens[1]);
+            boost::algorithm::to_upper(tokens[2]);
+            auto keyIter = KeyMap.find(tokens[1]);
+            auto actionIter = ActionMap.find(tokens[2]);
+            entity->m_MappedInputs.insert(std::pair<OIS::KeyCode, Actions>(keyIter->second, actionIter->second));
+        }
+    }
+}
 
 
 OIS::Keyboard* InputMgr::GetKeyboardReference() const

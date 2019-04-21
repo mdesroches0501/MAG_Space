@@ -18,7 +18,9 @@ public:
 	virtual ~GameMgr();
 
 	void Init();
-	void LoadLevel();
+	void LoadLevel(std::string levelLocation);
+	void Tick(float dt);
+	void Stop();
 
 	void MakeGround();
 	void MakeSky();

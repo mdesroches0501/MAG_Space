@@ -12,7 +12,7 @@
 #include <Aspects/UnitAI.h>
 #include <Utilities/Utils.h>
 
-Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident)
+Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
 {
 
     this->m_Engine = engine;
@@ -21,8 +21,7 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident)
     m_Meshfilename = std::string();
     m_Position = pos;
     m_Velocity = Ogre::Vector3(0, 0, 0);
-    m_Identity = ident;
-    m_Name = "Entity381";
+    m_Name = name;
     
     m_Yaw = m_Roll = m_Pitch = 0;
 
@@ -41,7 +40,6 @@ Entity381::~Entity381()
 
 void Entity381::Init()
 {
-    m_Name = m_Meshfilename + IntToString(m_Identity);
     m_OgreEntity = m_Engine->m_GfxMgr->mSceneMgr->createEntity(m_Meshfilename);
     m_SceneNode = m_Engine->m_GfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(m_Position);
     

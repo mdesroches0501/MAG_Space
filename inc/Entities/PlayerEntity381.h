@@ -22,7 +22,7 @@
 class PlayerEntity381 : public FlyingEntity381
 {
 public:
-    PlayerEntity381(Engine *engine, Ogre::Vector3 pos, int ident);
+    PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~PlayerEntity381();
 
     std::map<OIS::KeyCode, Actions> m_MappedInputs;

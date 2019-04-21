@@ -8,6 +8,8 @@
 #ifndef MGR_H_
 #define MGR_H_
 
+#include <string>
+
 class Engine;
 
 class Mgr
@@ -19,7 +21,7 @@ public:
     Engine *m_Engine;
 
     virtual void Init();
-    virtual void LoadLevel();
+    virtual void LoadLevel(std::string levelLocation);
     virtual void Tick(float dt);
     virtual void Stop();
 

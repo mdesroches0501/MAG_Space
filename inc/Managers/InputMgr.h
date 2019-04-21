@@ -18,7 +18,12 @@
 #include <SdkTrays.h>
 #include <SdkCameraMan.h>
 
+#include <Utilities/KeyMap.h>
+#include <Utilities/Actions.h>
 #include <Managers/Mgr.h>
+
+extern std::map<std::string, OIS::KeyCode> KeyMap;
+extern std::map<std::string, Actions> ActionMap;
 
 class Engine;
 
@@ -30,9 +35,9 @@ public:
     virtual ~InputMgr();
 
     void Init();
-    void Stop();
+    void LoadLevel(std::string levelLocation);
     void Tick(float dt);
-    void LoadLevel();
+    void Stop();
 
     OIS::Keyboard* GetKeyboardReference() const;
     OIS::Mouse* GetMouseReference() const;
@@ -40,11 +45,7 @@ public:
     bool IsKeyDown(OIS::KeyCode kc) const;
     bool IsMouseButtonDown(OIS::MouseButtonID mb) const;
 
-    void UpdateCamera(float dt);
-    void UpdateVelocityAndSelection(float dt);
-
-    void HandleMouseSelection(const OIS::MouseEvent& me);
-    void HandleAI(const OIS::MouseEvent& me);
+    void AssignInputsFromFile(std::ifstream& levelEntitiesFile);
 
     virtual bool keyPressed(const OIS::KeyEvent& ke);
     virtual bool keyReleased(const OIS::KeyEvent& ke);

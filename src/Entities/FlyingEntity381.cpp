@@ -10,8 +10,8 @@
 #include <Aspects/FlyingPhysics.h>
 #include <Entities/FlyingEntity381.h>
 
-FlyingEntity381::FlyingEntity381(Engine *engine, Ogre::Vector3 pos, int ident)
-        : Entity381(engine, pos, ident)
+FlyingEntity381::FlyingEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
+        : Entity381(engine, pos, name)
 {
     m_MinSpeed = m_MaxSpeed = 0;
     m_MinAltitude = 0;

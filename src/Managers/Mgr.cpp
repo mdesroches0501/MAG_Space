@@ -22,7 +22,7 @@ void Mgr::Init(){
 
 }
 
-void Mgr::LoadLevel(){
+void Mgr::LoadLevel(std::string levelLocation){
 
 }
 
