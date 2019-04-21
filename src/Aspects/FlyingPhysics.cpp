@@ -39,9 +39,11 @@ void FlyingPhysics::Tick(float dt)
     //I should turn to right/starboard not keep decreasing heading till I get to 10 because it is 20 degrees from -10 (350) to +10 by turning to port/right and
     //340 degrees from 350 (-10) to 10 by turning left/port
     
-    UpdateRotationAxis(flyingEntity->m_Pitch, flyingEntity->m_DesiredPitch, flyingEntity->m_PitchRate, dt);
-    UpdateRotationAxis(flyingEntity->m_Yaw, flyingEntity->m_DesiredYaw, flyingEntity->m_YawRate, dt);
+    //UpdateRotationAxis(flyingEntity->m_Pitch, flyingEntity->m_DesiredPitch, flyingEntity->m_PitchRate, dt);
+    //UpdateRotationAxis(flyingEntity->m_Yaw, flyingEntity->m_DesiredYaw, flyingEntity->m_YawRate, dt);
+    std::cout << "BEFORE: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
     UpdateRotationAxis(flyingEntity->m_Roll, flyingEntity->m_DesiredRoll, flyingEntity->m_RollRate, dt);
+    std::cout << "AFTER: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
 
     //Now do the trig
     flyingEntity->m_Velocity.x = Ogre::Math::Cos(Ogre::Degree(flyingEntity->m_Yaw)) 
@@ -82,5 +84,5 @@ void FlyingPhysics::UpdateRotationAxis(float& currentValue, float& desiredValue,
             currentValue -= rateOfChange * dt;
         ;
     }
-    currentValue = FixAngle(currentValue);
+    //currentValue = FixAngle(currentValue);
 }
