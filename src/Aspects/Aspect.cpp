@@ -37,9 +37,11 @@ Renderable::~Renderable()
 
 void Renderable::Tick(float dt)
 {
-    entity->m_SceneNode->setPosition(entity->m_Position); //now ogre should render the sceneNode at the new position...
+    Ogre::Vector3 translateVec = entity->m_Position - entity->m_OldPosition;
+    
+    entity->m_SceneNode->translate(translateVec, Ogre::Node::TS_LOCAL); //now ogre should render the sceneNode at the new position...
 
-    entity->m_SceneNode->resetOrientation(); // rotation is cumulative, so set current xyz-rotation to 0
+    //entity->m_SceneNode->resetOrientation(); // rotation is cumulative, so set current xyz-rotation to 0
     /*Ogre::Matrix3 localAxes = entity->m_SceneNode->getLocalAxes();
     Ogre::Quaternion xAxis(Ogre::Degree(entity->m_Pitch), Ogre::Vector3::UNIT_X);
     Ogre::Quaternion yAxis(Ogre::Degree(-entity->m_Yaw), Ogre::Vector3::UNIT_Y);
@@ -48,9 +50,18 @@ void Renderable::Tick(float dt)
     entity->m_SceneNode->rotate(rotation, Ogre::Node::TS_WORLD);
     */
     
-    entity->m_SceneNode->yaw(Ogre::Degree(-entity->m_Yaw)); //ogre's yaw is in the direction of -z
-    entity->m_SceneNode->pitch(Ogre::Degree(entity->m_Roll));
-    entity->m_SceneNode->roll(Ogre::Degree(entity->m_Pitch));
+    //Ogre::Quaternion()
     
-
+    float pitchChange = entity->m_Pitch - entity->m_OldPitch;
+    float yawChange = entity->m_Yaw - entity->m_OldYaw;
+    float rollChange = entity->m_Roll - entity->m_OldRoll;
+    
+    entity->m_SceneNode->yaw(Ogre::Degree(-yawChange)); //ogre's yaw is in the direction of -z
+    entity->m_SceneNode->pitch(Ogre::Degree(rollChange));
+    entity->m_SceneNode->roll(Ogre::Degree(pitchChange));
+    
+    entity->m_OldPitch = entity->m_Pitch;
+    entity->m_OldYaw = entity->m_Yaw;
+    entity->m_OldRoll = entity->m_Roll;
+    
 }

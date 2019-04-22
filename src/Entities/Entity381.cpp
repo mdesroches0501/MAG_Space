@@ -20,10 +20,11 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
     m_EntityType = NONE;
     m_Meshfilename = std::string();
     m_Position = pos;
+    m_OldPosition = pos;
     m_Velocity = Ogre::Vector3(0, 0, 0);
     m_Name = name;
     
-    m_Yaw = m_Roll = m_Pitch = 0;
+    m_Yaw = m_Roll = m_Pitch = m_OldYaw = m_OldRoll = m_OldPitch = 0;
 
     m_SceneNode = 0;
     m_CameraNode = 0;

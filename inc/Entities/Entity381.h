@@ -40,6 +40,9 @@ public:
 
     //dynamic data
     Ogre::Vector3 m_Position;
+    Ogre::Vector3 m_OldPosition;
+    Ogre::Quaternion m_Orientation;
+    Ogre::Quaternion m_OldOrientation;
     Ogre::Vector3 m_Velocity;
     
     //sound
@@ -48,6 +51,7 @@ public:
     unsigned int m_AuioId; // An ID that tells the sound manager what type of sound to play.
     
     float m_Yaw, m_Roll, m_Pitch;
+    float m_OldYaw, m_OldRoll, m_OldPitch;
 
     EntityTypes m_EntityType;
 

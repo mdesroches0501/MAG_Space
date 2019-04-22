@@ -47,21 +47,28 @@ void InputAspect::Tick(float dt)
                 break;
                 
             case PITCH_UP:
+                m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch += m_PlayerEntity->m_PitchRate * dt;
+                //m_PlayerEntity->m_Orientation + Ogre::Quaternion()
                 break;
             case PITCH_DOWN:
+                m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch -= m_PlayerEntity->m_PitchRate * dt;
                 break;
             case YAW_LEFT:
+                m_PlayerEntity->m_OldYaw = m_PlayerEntity->m_Yaw;
                 m_PlayerEntity->m_Yaw -= m_PlayerEntity->m_YawRate * dt;
                 break;
             case YAW_RIGHT:
+                m_PlayerEntity->m_OldYaw = m_PlayerEntity->m_Yaw;
                 m_PlayerEntity->m_Yaw += m_PlayerEntity->m_YawRate * dt;
                 break;
             case ROLL_LEFT:
+                m_PlayerEntity->m_OldRoll = m_PlayerEntity->m_Roll;
                 m_PlayerEntity->m_Roll -= m_PlayerEntity->m_RollRate * dt;
                 break;
             case ROLL_RIGHT:
+                m_PlayerEntity->m_OldRoll = m_PlayerEntity->m_Roll;
                 m_PlayerEntity->m_Roll += m_PlayerEntity->m_RollRate * dt;
                 break;
                 
