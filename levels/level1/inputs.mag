@@ -5,6 +5,8 @@ start
 # S PITCH_DOWN
 # A YAW_LEFT
 # D YAW_RIGHT
+# RETURN SPEED_UP
+# RSHIFT SLOW_DOWN
 end
 
 start

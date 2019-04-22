@@ -158,7 +158,7 @@ void InputMgr::AssignInputsFromFile(std::ifstream& levelEntitiesFile)
             boost::algorithm::to_upper(tokens[2]);
             auto keyIter = KeyMap.find(tokens[1]);
             auto actionIter = ActionMap.find(tokens[2]);
-            entity->m_MappedInputs.insert(std::pair<OIS::KeyCode, Actions>(keyIter->second, actionIter->second));
+            entity->m_MappedInputs.insert(boost::bimap<OIS::KeyCode, Actions>::value_type(keyIter->second, actionIter->second));
         }
     }
 }

@@ -11,6 +11,7 @@
 #define PLAYERENTITY381_H_
 
 #include <map>
+#include <boost/bimap.hpp>
 
 #include <OgreVector3.h>
 #include <OISKeyboard.h>
@@ -25,7 +26,7 @@ public:
     PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~PlayerEntity381();
 
-    std::map<OIS::KeyCode, Actions> m_MappedInputs;
+    boost::bimap<OIS::KeyCode, Actions> m_MappedInputs;
 };
 
 #endif /* FLYINGENTITY381_H_ */

@@ -30,9 +30,9 @@ void InputAspect::Tick(float dt)
     m_KeyboardTimer -= dt;
     for(auto iter = m_PlayerEntity->m_MappedInputs.begin(); iter != m_PlayerEntity->m_MappedInputs.end(); iter++)
     {
-        if(m_KeyboardReference->isKeyDown(iter->first))
+        if(m_KeyboardReference->isKeyDown(iter->left))
         {
-            switch(iter->second)
+            switch(iter->right)
             {
             case SHOOT:
                 if(m_KeyboardTimer < 0)
@@ -99,11 +99,11 @@ void InputAspect::Tick(float dt)
         }
     }
     
-    if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(OIS::KC_A))
+    if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(m_PlayerEntity->m_MappedInputs.right.find(Actions::YAW_LEFT)->second))
     {
         m_PlayerEntity->m_DesiredRoll = -30;
     }
-    else if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(OIS::KC_D))
+    else if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(m_PlayerEntity->m_MappedInputs.right.find(Actions::YAW_RIGHT)->second))
     {
         m_PlayerEntity->m_DesiredRoll = 30;
     }

@@ -45,7 +45,7 @@ public:
     //sound
     std::string m_SoundFile;
     bool m_PlaySound;
-    unsigned int m_AuioId;
+    unsigned int m_AuioId; // An ID that tells the sound manager what type of sound to play.
     
     float m_Yaw, m_Roll, m_Pitch;
 

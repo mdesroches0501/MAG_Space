@@ -267,7 +267,7 @@ void SoundMgr::LoadLevel(std::string levelLocation)
 
 void SoundMgr::attachSelectedNodeToSoundIndex(Entity381 *ent, int index)
 {
-    if(index == -1) //if there is no defined sound for the specified type, don't do anything
+    if(index < 0) //if there is no defined sound for the specified type, don't do anything
         return;
 
     this->playAudio(this->sourceInfo[index].source, true); //second argument is added as true since it was causing nonresponsiveness when method is called again before the sound ends
@@ -672,7 +672,7 @@ bool SoundMgr::stopBackground()
 bool SoundMgr::pauseBackground()
 {
     alSourcePause(this->backgroundMusicSource);
-    if(printError("PauseBackground Source") < 0)
+    if(printError("Pause background Source") < 0)
     {
         return false;
     }

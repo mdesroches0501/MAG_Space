@@ -41,9 +41,9 @@ void FlyingPhysics::Tick(float dt)
     
     //UpdateRotationAxis(flyingEntity->m_Pitch, flyingEntity->m_DesiredPitch, flyingEntity->m_PitchRate, dt);
     //UpdateRotationAxis(flyingEntity->m_Yaw, flyingEntity->m_DesiredYaw, flyingEntity->m_YawRate, dt);
-    std::cout << "BEFORE: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
+    //std::cout << "BEFORE: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
     UpdateRotationAxis(flyingEntity->m_Roll, flyingEntity->m_DesiredRoll, flyingEntity->m_RollRate, dt);
-    std::cout << "AFTER: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
+    //std::cout << "AFTER: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
 
     //Now do the trig
     flyingEntity->m_Velocity.x = Ogre::Math::Cos(Ogre::Degree(flyingEntity->m_Yaw)) 
