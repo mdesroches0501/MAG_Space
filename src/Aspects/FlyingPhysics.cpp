@@ -42,16 +42,27 @@ void FlyingPhysics::Tick(float dt)
     //UpdateRotationAxis(flyingEntity->m_Pitch, flyingEntity->m_DesiredPitch, flyingEntity->m_PitchRate, dt);
     //UpdateRotationAxis(flyingEntity->m_Yaw, flyingEntity->m_DesiredYaw, flyingEntity->m_YawRate, dt);
     //std::cout << "BEFORE: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
-    //UpdateRotationAxis(flyingEntity->m_Roll, flyingEntity->m_DesiredRoll, flyingEntity->m_RollRate, dt);
+    UpdateRotationAxis(flyingEntity->m_Roll, flyingEntity->m_DesiredRoll, flyingEntity->m_RollRate, dt);
     //std::cout << "AFTER: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
 
     //Now do the trig
+    /*
     Ogre::Vector3 xForward = flyingEntity->m_SceneNode->getOrientation() * Ogre::Vector3(1, 0, 0);
     Ogre::Vector3 yForward = flyingEntity->m_SceneNode->getOrientation() * Ogre::Vector3(0, 1, 0);
     Ogre::Vector3 zForward = flyingEntity->m_SceneNode->getOrientation() * Ogre::Vector3(0, 0, 1);
     flyingEntity->m_Velocity.x = xForward.x * flyingEntity->m_Speed;
     flyingEntity->m_Velocity.y = yForward.y * flyingEntity->m_Speed;
     flyingEntity->m_Velocity.z = zForward.z * flyingEntity->m_Speed;
+    */
+    
+    flyingEntity->m_Velocity.x = Ogre::Math::Cos(Ogre::Degree(flyingEntity->m_Yaw))
+                               * Ogre::Math::Cos(Ogre::Degree(flyingEntity->m_Pitch))
+                               * flyingEntity->m_Speed;
+    flyingEntity->m_Velocity.z = Ogre::Math::Sin(Ogre::Degree(flyingEntity->m_Yaw))
+                               * Ogre::Math::Cos(Ogre::Degree(flyingEntity->m_Pitch))
+                               * flyingEntity->m_Speed;
+    flyingEntity->m_Velocity.y = Ogre::Math::Sin(Ogre::Degree(flyingEntity->m_Pitch))
+                               * flyingEntity->m_Speed;
     
     if(flyingEntity->m_Name == "none")
     {

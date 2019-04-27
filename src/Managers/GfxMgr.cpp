@@ -128,7 +128,7 @@ void GfxMgr::Stop()
 
 void GfxMgr::MakeSky()
 {
-    m_Engine->m_GfxMgr->m_SceneMgr->setSkyBox(true, "Examples/MorningSkyBox");
+    m_Engine->m_GfxMgr->m_SceneMgr->setSkyBox(true, "Examples/SpaceSkyBox");
 }
 
 void GfxMgr::MakeGround()
@@ -148,7 +148,7 @@ void GfxMgr::MakeGround()
     groundEntity->setCastShadows(false);
     //groundEntity->setMaterialName("Ocean2_HLSL_GLSL");
     //groundEntity->setMaterialName("OceanHLSL_GLSL");
-    groundEntity->setMaterialName("Ocean2_Cg");
+    groundEntity->setMaterialName("Examples/Rockwall");
     //groundEntity->setMaterialName("NavyCg");
 }
 

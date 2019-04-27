@@ -13,6 +13,7 @@ class GameMgr;
 class GfxMgr;
 class InputMgr;
 class SoundMgr;
+class UiMgr;
 
 class Engine {
 public:
@@ -31,6 +32,7 @@ public:
 	GfxMgr    *m_GfxMgr;
 	InputMgr  *m_InputMgr;
 	SoundMgr  *m_SoundMgr;
+	UiMgr     *m_UiMgr;
 };
 
 #endif /* ENGINE_H_ */
