@@ -35,14 +35,14 @@ void Engine::Init(){
 	m_GfxMgr    = new GfxMgr(this);
 	m_InputMgr  = new InputMgr(this);
 	m_SoundMgr  = new SoundMgr(this);
-	m_UiMgr     = new UiMgr(this);
+	//m_UiMgr     = new UiMgr(this);
 
 	//--------------------------------------------------------------
 	m_EntityMgr->Init();
 	m_GfxMgr->Init();
 	m_InputMgr->Init(); // must initialize AFTER gfx manager
 	m_SoundMgr->Init();
-	m_UiMgr->Init();
+	//m_UiMgr->Init();
 	m_GameMgr->Init();
 
 	//--------------------------------------------------------------
@@ -50,7 +50,7 @@ void Engine::Init(){
 	m_GfxMgr->LoadLevel("levels/level1/");
 	m_InputMgr->LoadLevel("levels/level1/");
 	m_SoundMgr->LoadLevel("levels/level1/");
-	m_UiMgr->LoadLevel("levels/level1/");
+	//m_UiMgr->LoadLevel("levels/level1/");
 	m_GameMgr->LoadLevel("levels/level1/");
 }
 
@@ -60,7 +60,7 @@ void Engine::TickAll(float dt){
 	m_InputMgr->Tick(dt);
 	m_EntityMgr->Tick(dt);
 	m_SoundMgr->Tick(dt);
-	m_UiMgr->Tick(dt);
+	//m_UiMgr->Tick(dt);
 	m_GameMgr->Tick(dt);
 }
 
@@ -90,7 +90,7 @@ void Engine::Cleanup(){
 	m_GfxMgr->Stop();
 	m_EntityMgr->Stop();
 	m_SoundMgr->Stop();
-	m_UiMgr->Stop();
+	//m_UiMgr->Stop();
 	m_GameMgr->Stop();
 }
 
