@@ -86,8 +86,6 @@ void GfxMgr::Init()
 
     m_Window = m_Root->initialise(true, "CS381 Game Engine Version 1.0");
 
-    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
     m_SceneMgr = m_Root->createSceneManager(Ogre::ST_GENERIC);
 
@@ -110,7 +108,8 @@ void GfxMgr::Init()
 
 void GfxMgr::LoadLevel(std::string levelLocation)
 {
-
+    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void GfxMgr::Tick(float dt)

@@ -16,7 +16,8 @@ PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string 
     m_Meshfilename = "banshee.mesh";
     m_EntityType = PLAYER_TYPE;
 
-    m_Acceleration = m_YawRate = m_PitchRate = 15.0f;
+    m_Acceleration = 5.0f;
+    m_YawRate = m_PitchRate = 15.0f;
     m_RollRate = 60.0f;
 
     m_MinSpeed = 20;

@@ -73,11 +73,19 @@ void InputAspect::Tick(float dt)
                 break;
                 
             case SLOW_DOWN:
-                m_PlayerEntity->m_DesiredSpeed -= m_PlayerEntity->m_Acceleration;
+                if(m_KeyboardTimer < 0)
+                {
+                    m_KeyboardTimer = KEY_TIME;
+                    m_PlayerEntity->m_DesiredSpeed -= m_PlayerEntity->m_Acceleration;
+                }
                 break;
                 
             case SPEED_UP:
-                m_PlayerEntity->m_DesiredSpeed += m_PlayerEntity->m_Acceleration;
+                if(m_KeyboardTimer < 0)
+                {
+                    m_KeyboardTimer = KEY_TIME;
+                    m_PlayerEntity->m_DesiredSpeed += m_PlayerEntity->m_Acceleration;
+                }
                 break;
 
             case MOVE_FORWARD:
