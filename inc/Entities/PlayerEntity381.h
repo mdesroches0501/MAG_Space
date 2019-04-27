@@ -27,6 +27,9 @@ public:
     virtual ~PlayerEntity381();
 
     boost::bimap<OIS::KeyCode, Actions> m_MappedInputs;
+    
+    unsigned int m_Health;
+    unsigned int m_MaxHealth;
 };
 
 #endif /* FLYINGENTITY381_H_ */

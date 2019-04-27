@@ -39,6 +39,11 @@ void InputAspect::Tick(float dt)
                 {
                     m_KeyboardTimer = KEY_TIME;
                     std::cout << "SHOOT!!!" << std::endl;
+                    if(m_PlayerEntity->m_Health > 0)
+                    {
+                        m_PlayerEntity->m_Health -= 10;
+                        std::cout << "InputAspect Health: " << m_PlayerEntity->m_Health << std::endl; 
+                    }
                 }
                 break;
             case BLOCK:

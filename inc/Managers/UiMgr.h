@@ -9,6 +9,7 @@
 #define INC_UIMGR_H_
 
 #include <OgreWindowEventUtilities.h>
+#include <OgreTextAreaOverlayElement.h>
 #include <OISEvents.h>
 #include <OISInputManager.h>
 #include <OISKeyboard.h>
@@ -45,15 +46,18 @@ public:
 	virtual void LoadLevel(std::string levelLocation);
 	virtual void stop();
 
-	OgreBites::InputContext mInputContext;
-	OgreBites::SdkTrayManager* mTrayMgr;
-	Ogre::OverlaySystem* mOverlaySystem;
-	OgreBites::Label *mLabel;
-	OgreBites::Label *infoLabel;
-	OgreBites::Label *infoLabel2;
-	OgreBites::Label *infoLabel3;
+	OgreBites::InputContext m_InputContext;
+	OgreBites::SdkTrayManager* m_TrayMgr;
+	Ogre::OverlaySystem* m_OverlaySystem;
+	OgreBites::Label *m_Label;
+	OgreBites::Label *m_InfoEntityType;
+	OgreBites::Label *m_InfoEntityName;
+	OgreBites::Label *m_InfoEntitySpeed;
+	Ogre::TextAreaOverlayElement *m_TextArea;
+	Ogre::OverlayContainer *m_Panel;
+	Ogre::Overlay* m_Overlay;
 	
-	unsigned int playerCount = 5;
+	unsigned int m_PlayerCount = 5;
 };
 
 #endif /* INC_UIMGR_H_ */

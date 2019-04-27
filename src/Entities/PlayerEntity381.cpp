@@ -27,6 +27,8 @@ PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string 
     m_MaxAltitude = 1000;
     m_MinAltitude = 10;
     
+    m_Health = m_MaxHealth = 100;
+    
     InputAspect* inputAspect = new InputAspect(this, INPUT);
     m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::INPUT, (Aspect*)inputAspect));
     
