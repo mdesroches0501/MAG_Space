@@ -131,6 +131,11 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
     {
     case PLAYER_TYPE:
         ent = (Entity381*)(new PlayerEntity381(m_Engine, pos, name));
+        break;
+
+    case ASTEROID_TYPE:
+    	ent = (Entity381*)(new AsteroidEntity381(m_Engine, pos, name));
+    	break;
     }
     
     m_Count++;

@@ -18,3 +18,27 @@ Name player3
 Coordinates 0 50 -90
 camera PlayerCam1
 End
+
+Start
+EntityType asteroid
+Name asteroid1
+Coordinates 500 200 100
+End
+
+Start
+EntityType asteroid
+Name asteroid2
+Coordinates 600 500 200
+End
+
+Start
+EntityType asteroid
+Name asteroid3
+Coordinates 700 300 0
+End
+
+Start
+EntityType asteroid
+Name asteroid4
+Coordinates 720 0 0
+End

@@ -49,7 +49,7 @@ void Entity381::Init()
     
     m_CameraNode = m_SceneNode->createChildSceneNode();
     m_CameraNode->yaw(Ogre::Radian(Ogre::Degree(-90)));
-    m_CameraNode->translate(-200, 75, 0);
+    m_CameraNode->translate(-200, 50, 0);
 
     m_SceneNode->attachObject(m_OgreEntity);
     

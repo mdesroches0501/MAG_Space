@@ -11,6 +11,7 @@
 #include <Entities/PlayerEntity381.h>
 //#include <Entities/EnemyEntity381.h>
 #include <Utilities/Types381.h>
+#include <Entities/AsteroidEntity381.h>
 
 
 struct EntityRequirements
