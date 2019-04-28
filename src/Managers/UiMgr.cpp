@@ -64,36 +64,23 @@ void UiMgr::LoadLevel(std::string levelLocation)
         m_TrayMgr = new OgreBites::SdkTrayManager("InterfaceName", m_Engine->m_GfxMgr->m_Window, m_InputContext, this);
     }
     
-    
-    m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "MyButton", "Spawn Boat!");
-    m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "SelectButton", "Select Next");
-
-    Ogre::StringVector options;
-    options.push_back("Select Boat");
-    options.push_back("Spawn SpeedBoat");
-    options.push_back("Spawn Destroyer");
-    options.push_back("Spawn Carrier");
-    m_TrayMgr->createLongSelectMenu(OgreBites::TL_TOPRIGHT, "MyMenu", "Menu", 300, 4, options);
-
     m_TrayMgr->showBackdrop("ECSLENT/UI");
 
-    m_Label = m_TrayMgr->createLabel(OgreBites::TL_LEFT, "MyLabel", "Label!", 250);
-
-    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityType", "No Unit Selected", 250);
+    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_BOTTOM, "InfoEntityType", "No Unit Selected", 310);
     m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 250);
     m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntitySpeed", "No Unit Selected", 250);
 
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
     OgreBites::ProgressBar * pbar;
-    pbar = m_TrayMgr->createProgressBar(OgreBites::TL_TOP, "HealthBar", "Health", 300, 200);
+    pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOM, "HealthBar", "Health", 300, 200);
     pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
     std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
     
     m_Panel = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingletonPtr()->createOverlayElement("Panel","GUI"));
     m_Panel->setMetricsMode(Ogre::GMM_PIXELS);
     m_Panel->setPosition(0,0);
-    m_Panel->setDimensions(1.0f,1.0f);
+    m_Panel->setDimensions(0.5f,0.5f);
     m_Overlay = Ogre::OverlayManager::getSingletonPtr()->create("GUI_OVERLAY");
     m_Overlay->add2D(m_Panel);
     
