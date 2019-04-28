@@ -8,7 +8,7 @@ End
 Start
 EntityType player
 Name player2
-Coordinates 0 50 -50
+Coordinates 0 100 0
 camera PlayerCam1
 End
 

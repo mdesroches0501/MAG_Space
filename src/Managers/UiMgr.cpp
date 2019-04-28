@@ -119,7 +119,7 @@ void UiMgr::Tick(float dt)
     
     OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
     pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
-    std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
+    //std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
     
     if(player->m_Health <= 0)
     {

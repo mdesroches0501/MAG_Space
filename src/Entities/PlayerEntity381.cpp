@@ -9,11 +9,12 @@
 
 #include <Entities/PlayerEntity381.h>
 #include <Aspects/InputAspect.h>
+#include <Aspects/ColliderAspect.h>
 
 PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
 {
-    m_Meshfilename = "banshee.mesh";
+    m_Meshfilename = "ddg51.mesh";
     m_EntityType = PLAYER_TYPE;
 
     m_Acceleration = 5.0f;
@@ -31,6 +32,9 @@ PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string 
     
     InputAspect* inputAspect = new InputAspect(this, INPUT);
     m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::INPUT, (Aspect*)inputAspect));
+    
+    PlayerCollider* playerCollider = new PlayerCollider(this, COLLIDER);
+    m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::COLLIDER, (Aspect*)playerCollider));
     
     std::cout << "Created: " << this->m_Name << std::endl;
 }

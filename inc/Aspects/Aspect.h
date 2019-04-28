@@ -10,6 +10,7 @@ enum AspectType
     FLYING_PHYSICS,
     UNIT_AI,
     INPUT,
+    COLLIDER,
 };
 
 class Entity381;    //Forward declaration of the Entity381 class

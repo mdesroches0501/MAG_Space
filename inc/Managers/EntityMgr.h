@@ -44,12 +44,12 @@ public:
 
     std::vector<Entity381*> m_Entities;
 
+    int m_Count;
 private:
     void CreateEntity(std::string meshfilename, Ogre::Vector3 pos);
     
     std::map<std::string, EntityTypes> entityTypesMap;
     
-    int m_Count;
 
 };
 
