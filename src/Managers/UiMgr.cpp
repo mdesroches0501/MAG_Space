@@ -66,14 +66,14 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     m_TrayMgr->showBackdrop("ECSLENT/UI");
 
-    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_BOTTOM, "InfoEntityType", "No Unit Selected", 310);
-    m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 250);
-    m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntitySpeed", "No Unit Selected", 250);
+    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_BOTTOMLEFT, "InfoEntityType", "No Unit Selected", 300);
+    m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_NONE, "InfoEntityName", "No Unit Selected", 250);
+    m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_BOTTOMRIGHT, "InfoEntitySpeed", "No Unit Selected", 250);
 
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
     OgreBites::ProgressBar * pbar;
-    pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOM, "HealthBar", "Health", 300, 200);
+    pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOMLEFT, "HealthBar", "Health", 300, 200);
     pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
     std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
     
