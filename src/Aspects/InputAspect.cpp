@@ -54,11 +54,12 @@ void InputAspect::Tick(float dt)
             case PITCH_UP:
                 m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch += m_PlayerEntity->m_PitchRate * dt;
-                //m_PlayerEntity->m_Orientation + Ogre::Quaternion()
+                //m_PlayerEntity->m_Orientation + Ogre::Quaternion(Ogre::Radian(m_PlayerEntity->m_PitchRate * dt), m_PlayerEntity->m_Orientation.xAxis());
                 break;
             case PITCH_DOWN:
                 m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch -= m_PlayerEntity->m_PitchRate * dt;
+                //m_PlayerEntity->m_Orientation + Ogre::Quaternion(Ogre::Radian(m_PlayerEntity->m_PitchRate * dt), m_PlayerEntity->m_Orientation.xAxis());
                 break;
             case YAW_LEFT:
                 m_PlayerEntity->m_OldYaw = m_PlayerEntity->m_Yaw;

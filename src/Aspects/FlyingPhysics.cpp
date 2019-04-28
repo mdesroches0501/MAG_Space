@@ -12,13 +12,12 @@
 FlyingPhysics::FlyingPhysics(FlyingEntity381 * ent, AspectType aType)
         : Aspect((Entity381*)ent, aType)
 {
-    // TODO Auto-generated constructor stub
     flyingEntity = ent;
 }
 
 FlyingPhysics::~FlyingPhysics()
 {
-    // TODO Auto-generated destructor stub
+    
 }
 
 void FlyingPhysics::Tick(float dt)
@@ -34,16 +33,8 @@ void FlyingPhysics::Tick(float dt)
         flyingEntity->m_Speed -= flyingEntity->m_Acceleration * dt;
     }
     flyingEntity->m_Speed = Clamp(flyingEntity->m_MinSpeed, flyingEntity->m_MaxSpeed, flyingEntity->m_Speed);
-
-    //When I try to go from a yaw of 350 to a yaw of 10,
-    //I should turn to right/starboard not keep decreasing heading till I get to 10 because it is 20 degrees from -10 (350) to +10 by turning to port/right and
-    //340 degrees from 350 (-10) to 10 by turning left/port
     
-    //UpdateRotationAxis(flyingEntity->m_Pitch, flyingEntity->m_DesiredPitch, flyingEntity->m_PitchRate, dt);
-    //UpdateRotationAxis(flyingEntity->m_Yaw, flyingEntity->m_DesiredYaw, flyingEntity->m_YawRate, dt);
-    //std::cout << "BEFORE: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
     UpdateRotationAxis(flyingEntity->m_Roll, flyingEntity->m_DesiredRoll, flyingEntity->m_RollRate, dt);
-    //std::cout << "AFTER: DesiredRoll: " << flyingEntity->m_DesiredRoll << " Roll: " << flyingEntity->m_Roll << std::endl;
 
     //Now do the trig
     /*
@@ -64,17 +55,16 @@ void FlyingPhysics::Tick(float dt)
     flyingEntity->m_Velocity.y = Ogre::Math::Sin(Ogre::Degree(flyingEntity->m_Pitch))
                                * flyingEntity->m_Speed;
     
+
+    //flyingEntity->m_Velocity = flyingEntity->m_Orientation * Ogre::Vector3::UNIT_SCALE  * flyingEntity->m_Speed;
+    
     if(flyingEntity->m_Name == "none")
     {
         std::cout << "x: " << flyingEntity->m_Velocity.x << " y: " << flyingEntity->m_Velocity.y << " z: " << flyingEntity->m_Velocity.z << std::endl;
     }
     
-    //This does not change!
     flyingEntity->m_OldPosition = flyingEntity->m_Position;
     flyingEntity->m_Position = flyingEntity->m_Position + flyingEntity->m_Velocity * dt;
-
-    //flyingEntity->m_Altitude = Clamp(flyingEntity->m_MinAltitude, flyingEntity->m_MaxAltitude, flyingEntity->m_Altitude);
-    //flyingEntity->m_Position.y = flyingEntity->m_Altitude;
 }
 
 void FlyingPhysics::UpdateRotationAxis(float& currentValue, float& desiredValue, float& rateOfChange, float dt)

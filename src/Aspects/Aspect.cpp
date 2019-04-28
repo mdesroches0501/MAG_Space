@@ -68,4 +68,5 @@ void Renderable::Tick(float dt)
     entity->m_SceneNode->yaw(Ogre::Degree(-entity->m_Yaw));
     entity->m_SceneNode->pitch(Ogre::Degree(entity->m_Roll));
     entity->m_SceneNode->roll(Ogre::Degree(entity->m_Pitch));
+    
 }

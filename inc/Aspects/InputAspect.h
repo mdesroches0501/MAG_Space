@@ -30,8 +30,6 @@ public:
     
     float m_KeyboardTimer;
     const static float KEY_TIME;
-    
-    bool m_RollLeftToggle, m_RollRightToggle;
 };
 
 #endif /* INPUTASPECT_H_ */
