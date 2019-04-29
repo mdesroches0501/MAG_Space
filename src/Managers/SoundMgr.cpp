@@ -130,7 +130,7 @@ void SoundMgr::initialize(void)
         backgroundMusicSource = sourceInfo[sid].source;
         this->loadStartBackground();
     }
-    std::cout << "background music loaded" << std::endl;
+    //std::cout << "background music loaded" << std::endl;
 
     initWatercraftSounds();
 
@@ -774,7 +774,7 @@ bool SoundMgr::loadStartBackground()
     alSourcef(this->backgroundMusicSource, AL_PITCH, 1);
     printError("Source pitch");
 
-    alSourcef(this->backgroundMusicSource, AL_GAIN, 1);
+    alSourcef(this->backgroundMusicSource, AL_GAIN, 0.25);
     printError("Source Gain");
 
     alSource3f(this->backgroundMusicSource, AL_POSITION, 0, 0, 0);

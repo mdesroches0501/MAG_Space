@@ -11,6 +11,7 @@
 #include <Aspects/InputAspect.h>
 #include <Aspects/ColliderAspect.h>
 #include <Managers/GfxMgr.h>
+#include <Managers/SoundMgr.h>
 
 PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
@@ -46,6 +47,8 @@ PlayerEntity381::~PlayerEntity381()
     m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->attachObject(m_Engine->m_GfxMgr->m_Camera);
     m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setPosition(m_CameraNode->getPosition());
     m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setOrientation(m_CameraNode->getOrientation());
+    
+    m_Engine->m_SoundMgr->loadStartBackground();
 }
 
 
