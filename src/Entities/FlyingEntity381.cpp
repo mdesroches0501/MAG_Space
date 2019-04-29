@@ -37,3 +37,9 @@ FlyingEntity381::~FlyingEntity381()
 {
 
 }
+
+
+void FlyingEntity381::Init()
+{
+    Entity381::Init();
+}

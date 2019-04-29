@@ -6,29 +6,15 @@ camera PlayerCam1
 End
 
 Start
-EntityType player
-Name player2
-Coordinates 0 100 0
-camera PlayerCam1
-End
-
-Start
-EntityType player
-Name player3
-Coordinates 0 50 -90
-camera PlayerCam1
-End
-
-Start
 EntityType asteroid
 Name asteroid1
-Coordinates 500 200 100
+Coordinates 100 100 -50
 End
 
 Start
 EntityType asteroid
 Name asteroid2
-Coordinates 600 500 200
+Coordinates 130 100 -50
 End
 
 Start

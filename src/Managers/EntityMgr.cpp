@@ -53,8 +53,19 @@ void EntityMgr::LoadLevel(std::string levelLocation)
 }
 
 void EntityMgr::Tick(float dt){
-    for(int i = 0; i < m_Count; i++){
-        m_Entities[i]->Tick(dt);
+    for(auto iter = m_Entities.begin(); iter != m_Entities.end(); iter++){
+        if((*iter)->m_DeleteNextTick)
+        {
+            std::cout << "Entity: " << (*iter)->m_Name << " should be dying right now" << std::endl;
+            auto tempPtr = *iter;
+            iter = m_Entities.erase(iter);
+            delete tempPtr;
+            iter--; // iter was set to entity after erased entity. Must decrement so increment at end of loop does not skip new entity.
+        }
+        else
+        {            
+            (*iter)->Tick(dt);
+        }
     }
 }
 

@@ -201,7 +201,17 @@ void SoundMgr::disable()
 void SoundMgr::syncListenerToCamera()
 {
     //position from camera scene node
-    Ogre::Vector3 cameraPosition = m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->getPosition();
+    PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
+    Ogre::SceneNode* cameraNode = NULL;
+    if(player == NULL)
+    {
+        cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera");
+    }
+    else
+    {
+        cameraNode = player->m_CameraNode;
+    }
+    Ogre::Vector3 cameraPosition = cameraNode->getPosition();
     this->position[0] = cameraPosition.x;
     this->position[1] = cameraPosition.y;
     this->position[2] = cameraPosition.z;
@@ -217,7 +227,7 @@ void SoundMgr::syncListenerToCamera()
     printError("Cannot set listener velocity");
 
     //need to set orientation from camera scene node
-    Ogre::Quaternion q = m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->getOrientation();
+    Ogre::Quaternion q = cameraNode->getOrientation();
     Ogre::Vector3 vDirection = q.zAxis();
     Ogre::Vector3 vUp = q.yAxis();
 

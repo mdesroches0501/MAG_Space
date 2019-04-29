@@ -72,6 +72,11 @@ void UiMgr::LoadLevel(std::string levelLocation)
 
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
+    if(player == NULL)
+    {
+        std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
+    }
+    
     OgreBites::ProgressBar * pbar;
     pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOM, "HealthBar", "Health", 300, 200);
     pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
@@ -99,23 +104,35 @@ void UiMgr::Tick(float dt)
 
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
-    m_InfoEntityType->setCaption("Type: Player");
-    m_InfoEntityName->setCaption("Name: " + player->m_Name);
-    m_InfoEntitySpeed->setCaption("Speed: " + std::to_string(player->m_Speed));
-    
-    
-    OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
-    pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
-    //std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
-    
-    if(player->m_Health <= 0)
-    {
-        //m_Overlay->show(); // Not working right. Should show m_TextArea but instead gives weird triangle artifacts.
+    if(player != NULL)
+    {        
+        m_InfoEntityType->setCaption("Type: Player");
+        m_InfoEntityName->setCaption("Name: " + player->m_Name);
+        m_InfoEntitySpeed->setCaption("Speed: " + std::to_string(player->m_Speed));
+        
+        OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
+        pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
     }
     else
     {
-        //m_Overlay->hide();
+        m_InfoEntityType->setCaption("Type: Dead");
+        m_InfoEntityName->setCaption("Name: Guitar Warrior");
+        m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
+        
+        OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
+        pbar->setProgress(0);
     }
+    
+    //std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
+    
+//    if(player->m_Health <= 0)
+//    {
+//        //m_Overlay->show(); // Not working right. Should show m_TextArea but instead gives weird triangle artifacts.
+//    }
+//    else
+//    {
+//        //m_Overlay->hide();
+//    }
 }
 
 void UiMgr::windowResized(Ogre::RenderWindow* rw)

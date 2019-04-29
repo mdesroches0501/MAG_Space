@@ -26,7 +26,7 @@ public:
     Entity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~Entity381();
 
-    void Init();
+    virtual void Init();
     void Tick(float dt);
 
     Engine *m_Engine;
@@ -55,6 +55,8 @@ public:
 
     EntityTypes m_EntityType;
 
+    bool m_DeleteNextTick;
+    
     std::map<AspectType, Aspect*> m_Aspects;
 };
 

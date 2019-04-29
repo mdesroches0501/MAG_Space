@@ -53,7 +53,7 @@ void GameMgr::LoadLevel(std::string levelLocation)
     sceneNode->showBoundingBox(true);
 
     // A node to attach the camera to so we can move the camera node instead of the camera.
-    cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode();
+    cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode("MainCamera");
     cameraNode->setPosition(0, 200, 500);
     //cameraNode->attachObject(m_Engine->m_GfxMgr->mCamera);
     m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->attachObject(m_Engine->m_GfxMgr->m_Camera);
