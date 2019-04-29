@@ -128,7 +128,7 @@ void SoundMgr::initialize(void)
     {
         std::cout << "background music loaded" << std::endl;
         backgroundMusicSource = sourceInfo[sid].source;
-        this->loadStartBackground();
+        //this->loadStartBackground();
     }
     //std::cout << "background music loaded" << std::endl;
 

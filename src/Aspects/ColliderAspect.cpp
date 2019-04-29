@@ -67,7 +67,7 @@ void PlayerCollider::Collided()
         if(player->m_Health <= 0)
         {
             entity->m_DeleteNextTick = true;
-            std::cout << entity->m_Name << "Deleted" << std::endl;
+            std::cout << entity->m_Name << " Deleted" << std::endl;
         }
         std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
         break;
