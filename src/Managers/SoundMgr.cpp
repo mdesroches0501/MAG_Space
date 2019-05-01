@@ -128,9 +128,9 @@ void SoundMgr::initialize(void)
     {
         std::cout << "background music loaded" << std::endl;
         backgroundMusicSource = sourceInfo[sid].source;
-        this->loadStartBackground();
+        //this->loadStartBackground();
     }
-    std::cout << "background music loaded" << std::endl;
+    //std::cout << "background music loaded" << std::endl;
 
     initWatercraftSounds();
 
@@ -201,7 +201,17 @@ void SoundMgr::disable()
 void SoundMgr::syncListenerToCamera()
 {
     //position from camera scene node
-    Ogre::Vector3 cameraPosition = m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->getPosition();
+    PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
+    Ogre::SceneNode* cameraNode = NULL;
+    if(player == NULL)
+    {
+        cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera");
+    }
+    else
+    {
+        cameraNode = player->m_CameraNode;
+    }
+    Ogre::Vector3 cameraPosition = cameraNode->getPosition();
     this->position[0] = cameraPosition.x;
     this->position[1] = cameraPosition.y;
     this->position[2] = cameraPosition.z;
@@ -217,7 +227,7 @@ void SoundMgr::syncListenerToCamera()
     printError("Cannot set listener velocity");
 
     //need to set orientation from camera scene node
-    Ogre::Quaternion q = m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->getOrientation();
+    Ogre::Quaternion q = cameraNode->getOrientation();
     Ogre::Vector3 vDirection = q.zAxis();
     Ogre::Vector3 vUp = q.yAxis();
 
@@ -283,7 +293,7 @@ void SoundMgr::Tick(float dtime)
 
 void SoundMgr::Stop()
 {
-
+    stopBackground();
 }
 
 //this was for moving sound but playing sound for all moving objects does not seem to be a good idea
@@ -764,7 +774,7 @@ bool SoundMgr::loadStartBackground()
     alSourcef(this->backgroundMusicSource, AL_PITCH, 1);
     printError("Source pitch");
 
-    alSourcef(this->backgroundMusicSource, AL_GAIN, 1);
+    alSourcef(this->backgroundMusicSource, AL_GAIN, 0.25);
     printError("Source Gain");
 
     alSource3f(this->backgroundMusicSource, AL_POSITION, 0, 0, 0);

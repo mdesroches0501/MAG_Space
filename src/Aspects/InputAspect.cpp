@@ -123,14 +123,26 @@ void InputAspect::Tick(float dt)
     if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(m_PlayerEntity->m_MappedInputs.right.find(Actions::YAW_LEFT)->second))
     {
         m_PlayerEntity->m_DesiredRoll = -30;
+        if(std::abs(m_PlayerEntity->m_Roll - m_PlayerEntity->m_DesiredRoll) <= 1)
+        {
+        	m_PlayerEntity->m_Roll = m_PlayerEntity->m_DesiredRoll;
+        }
     }
     else if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(m_PlayerEntity->m_MappedInputs.right.find(Actions::YAW_RIGHT)->second))
     {
         m_PlayerEntity->m_DesiredRoll = 30;
+        if(std::abs(m_PlayerEntity->m_Roll - m_PlayerEntity->m_DesiredRoll) <= 1)
+		{
+			m_PlayerEntity->m_Roll = m_PlayerEntity->m_DesiredRoll;
+		}
     }
     else
     {
         m_PlayerEntity->m_DesiredRoll = 0;
+        if(std::abs(m_PlayerEntity->m_Roll - m_PlayerEntity->m_DesiredRoll) <= 1)
+		{
+			m_PlayerEntity->m_Roll = m_PlayerEntity->m_DesiredRoll;
+		}
     }
     
 }

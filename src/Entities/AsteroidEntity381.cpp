@@ -8,12 +8,13 @@
 
 
 #include <Entities/AsteroidEntity381.h>
-#include <Aspects/InputAspect.h>
+#include <Aspects/ColliderAspect.h>
+#include <Aspects/FollowPlayer.h>
 
 AsteroidEntity381::AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
 {
-    m_Meshfilename = "sphere.mesh";
+    m_Meshfilename = "ddg51.mesh";
     m_EntityType = ASTEROID_TYPE;
 
     m_Acceleration = 50;
@@ -28,15 +29,23 @@ AsteroidEntity381::AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::str
     m_MinAltitude = 10;
 
     m_Health = m_MaxHealth = 100;
-
- /*   InputAspect* inputAspect = new InputAspect(this, INPUT);
-    m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::INPUT, (Aspect*)inputAspect)); */
+    
+    AsteroidCollider* asteroidCollider = new AsteroidCollider(this, COLLIDER);
+    m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::COLLIDER, (Aspect*)asteroidCollider)); 
+    
+    FollowPlayerAspect* followPlayerAspect = new FollowPlayerAspect(this, FOLLOW_PLAYER);
+    m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::FOLLOW_PLAYER, (Aspect*)followPlayerAspect)); 
 
     std::cout << "Created: " << this->m_Name << std::endl;
 }
 
 AsteroidEntity381::~AsteroidEntity381()
 {
-
+    
 }
 
+void AsteroidEntity381::Init()
+{
+    Entity381::Init();
+    m_SceneNode->scale(0.2, 0.2, 0.2);
+}

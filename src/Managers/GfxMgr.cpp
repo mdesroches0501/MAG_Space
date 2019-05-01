@@ -88,7 +88,7 @@ void GfxMgr::Init()
 
 
     m_SceneMgr = m_Root->createSceneManager(Ogre::ST_GENERIC);
-
+    
     m_Camera = m_SceneMgr->createCamera("MainCam");
     m_Camera->setPosition(0, 0, 80);
     m_Camera->lookAt(0, 0, -300);
@@ -120,7 +120,7 @@ void GfxMgr::Tick(float dt)
 
 void GfxMgr::Stop()
 {
-    
+    m_SceneMgr->clearScene();
 }
 
 

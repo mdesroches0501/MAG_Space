@@ -24,6 +24,8 @@ class AsteroidEntity381 : public FlyingEntity381
 public:
     AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~AsteroidEntity381();
+    
+    void Init();
 
     boost::bimap<OIS::KeyCode, Actions> m_MappedInputs;
 

@@ -59,6 +59,48 @@ PlayerCollider::~PlayerCollider()
 void PlayerCollider::Collided()
 {
     EntityTypes entType = m_CollidedEntity->m_EntityType;
+    PlayerEntity381* player = (PlayerEntity381*) entity;
+    switch(entType)
+    {
+    case ASTEROID_TYPE:
+        player->m_Health -= 50;
+        if(player->m_Health <= 0)
+        {
+            entity->m_DeleteNextTick = true;
+            std::cout << entity->m_Name << " Deleted" << std::endl;
+        }
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    case PLAYER_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    case ENEMY_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    case PICKUP_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    default:
+        break;
+    }
+}
+
+
+
+AsteroidCollider::AsteroidCollider(AsteroidEntity381* ent, AspectType aspectType)
+        : ColliderAspect(ent, aspectType)
+{
+    
+}
+
+AsteroidCollider::~AsteroidCollider()
+{
+    
+}
+
+void AsteroidCollider::Collided()
+{
+    EntityTypes entType = m_CollidedEntity->m_EntityType;
     switch(entType)
     {
     case ASTEROID_TYPE:
@@ -66,6 +108,8 @@ void PlayerCollider::Collided()
         break;
     case PLAYER_TYPE:
         std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        entity->m_DeleteNextTick = true;
+        std::cout << entity->m_Name << "Deleted" << std::endl;
         break;
     case ENEMY_TYPE:
         std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;

@@ -11,6 +11,7 @@
 #define INC_ASPECTS_COLLIDERASPECT_H_
 
 #include <Entities/PlayerEntity381.h>
+#include <Entities/AsteroidEntity381.h>
 #include <Aspects/Aspect.h>
 #include <Utilities/Types381.h>
 
@@ -34,6 +35,16 @@ class PlayerCollider : public ColliderAspect
 public:
     PlayerCollider(PlayerEntity381* ent, AspectType aspectType);
     ~PlayerCollider();
+    
+    void Collided();
+};
+
+
+class AsteroidCollider : public ColliderAspect
+{
+public:
+    AsteroidCollider(AsteroidEntity381* ent, AspectType aspectType);
+    ~AsteroidCollider();
     
     void Collided();
 };

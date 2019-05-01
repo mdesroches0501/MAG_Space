@@ -12,6 +12,29 @@
 #include <Aspects/UnitAI.h>
 #include <Utilities/Utils.h>
 
+
+void DestroyAllAttachedMovableObjects(Ogre::SceneNode* node)
+{
+    // Destroy all the attached objects
+    auto objectIter = node->getAttachedObjectIterator();
+
+    while ( objectIter.hasMoreElements() )
+    {
+      auto moveableObject = static_cast<Ogre::MovableObject*>(objectIter.getNext());
+      node->getCreator()->destroyMovableObject( moveableObject );
+    }
+    
+    // Recurse to child SceneNodes
+    auto childIter = node->getChildIterator();
+    
+    while ( childIter.hasMoreElements() )
+    {
+      Ogre::SceneNode* pChildNode = static_cast<Ogre::SceneNode*>(childIter.getNext());
+      DestroyAllAttachedMovableObjects( pChildNode );
+    }
+}
+
+
 Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
 {
 
@@ -33,13 +56,26 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
     m_PlaySound = false;
     m_AuioId = 0;
     
+    m_DeleteNextTick = false;
+    
     Renderable* renderable = new Renderable(this, RENDERABLE);
     m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::RENDERABLE, (Aspect*)renderable));
 }
 
 Entity381::~Entity381()
 {
-
+    std::cout << "I should be dying" << std::endl;
+    for(auto iter = m_Aspects.begin(); iter != m_Aspects.end(); iter++)
+    {
+        delete iter->second;
+    }
+    
+    m_Aspects.clear();
+    
+    DestroyAllAttachedMovableObjects(m_SceneNode);
+    
+    m_SceneNode->removeAndDestroyAllChildren();
+    m_Engine->m_GfxMgr->m_SceneMgr->destroySceneNode(m_SceneNode);
 }
 
 void Entity381::Init()

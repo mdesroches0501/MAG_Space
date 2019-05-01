@@ -44,7 +44,7 @@ public:
 	virtual void Init();
 	virtual void Tick(float dt);
 	virtual void LoadLevel(std::string levelLocation);
-	virtual void stop();
+	virtual void Stop();
 
 	OgreBites::InputContext m_InputContext;
 	OgreBites::SdkTrayManager* m_TrayMgr;
@@ -53,6 +53,13 @@ public:
 	OgreBites::Label *m_InfoEntityType;
 	OgreBites::Label *m_InfoEntityName;
 	OgreBites::Label *m_InfoEntitySpeed;
+	
+	OgreBites::Button *m_RestartButton;
+	OgreBites::Button *m_MainMenu;
+	OgreBites::Button *m_Level1;
+	
+	std::string m_CurrentLevel;
+	
 	Ogre::TextAreaOverlayElement *m_TextArea;
 	Ogre::OverlayContainer *m_Panel;
 	Ogre::Overlay* m_Overlay;

@@ -20,6 +20,8 @@ class FlyingEntity381 : public Entity381
 public:
     FlyingEntity381(Engine *engine, Ogre::Vector3 pos, std::string name);
     virtual ~FlyingEntity381();
+    
+    virtual void Init();
 
     float m_Acceleration, m_YawRate, m_RollRate, m_PitchRate;
     float m_DesiredSpeed, m_DesiredYaw, m_DesiredRoll, m_DesiredPitch;

@@ -34,5 +34,12 @@ EnemyEntity381::EnemyEntity381(Engine *engine, Ogre::Vector3 pos, std::string na
 
 EnemyEntity381::~EnemyEntity381()
 {
-    
+
+}
+
+
+
+void EnemyEntity381::Init()
+{
+    FlyingEntity381::Init();
 }

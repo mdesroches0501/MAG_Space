@@ -10,11 +10,13 @@
 #include <Entities/PlayerEntity381.h>
 #include <Aspects/InputAspect.h>
 #include <Aspects/ColliderAspect.h>
+#include <Managers/GfxMgr.h>
+#include <Managers/SoundMgr.h>
 
 PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
 {
-    m_Meshfilename = "ddg51.mesh";
+    m_Meshfilename = "banshee.mesh";
     m_EntityType = PLAYER_TYPE;
 
     m_Acceleration = 5.0f;
@@ -41,5 +43,16 @@ PlayerEntity381::PlayerEntity381(Engine *engine, Ogre::Vector3 pos, std::string 
 
 PlayerEntity381::~PlayerEntity381()
 {
+    m_CameraNode->detachObject(m_Engine->m_GfxMgr->m_Camera);
+    m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->attachObject(m_Engine->m_GfxMgr->m_Camera);
+    m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setPosition(m_CameraNode->getPosition());
+    m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setOrientation(m_CameraNode->getOrientation());
     
+    m_Engine->m_SoundMgr->loadStartBackground();
+}
+
+
+void PlayerEntity381::Init()
+{
+    FlyingEntity381::Init();
 }

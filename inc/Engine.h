@@ -8,6 +8,8 @@
 #ifndef ENGINE_H_
 #define ENGINE_H_
 
+#include <string>
+
 class EntityMgr;
 class GameMgr;
 class GfxMgr;
@@ -21,6 +23,7 @@ public:
 	virtual ~Engine();
 
 	void Init();
+	void LoadLevel(std::string levelLocation);
 	void Run();
 	void TickAll(float dt);
 	void Cleanup();
@@ -33,6 +36,9 @@ public:
 	InputMgr  *m_InputMgr;
 	SoundMgr  *m_SoundMgr;
 	UiMgr     *m_UiMgr;
+	
+	
+	std::string m_LevelToLoad;
 };
 
 #endif /* ENGINE_H_ */
