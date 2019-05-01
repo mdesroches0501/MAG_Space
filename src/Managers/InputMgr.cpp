@@ -12,6 +12,7 @@
 #include <Managers/GfxMgr.h>
 #include <Managers/EntityMgr.h>
 #include <Managers/GameMgr.h>
+#include <Managers/UiMgr.h>
 #include <Aspects/UnitAI.h>
 #include <Utilities/Command.h>
 #include <Utilities/Utils.h>
@@ -26,7 +27,17 @@ InputMgr::InputMgr(Engine *engine)
 
 InputMgr::~InputMgr()
 {
+    if(m_InputMgr)
+    {
+        m_InputMgr->destroyInputObject(m_Mouse);
+        m_InputMgr->destroyInputObject(m_Keyboard);
 
+        m_Mouse = NULL;
+        m_Keyboard = NULL;
+        
+        OIS::InputManager::destroyInputSystem(m_InputMgr);
+        m_InputMgr = NULL;
+    }
 }
 
 void InputMgr::Init()
@@ -80,7 +91,7 @@ void InputMgr::Init()
 }
 
 void InputMgr::LoadLevel(std::string levelLocation)
-{
+{    
     std::ifstream levelEntitiesFile;
     levelEntitiesFile.open(levelLocation + "inputs.mag");
     if(levelEntitiesFile.is_open() && m_Engine->m_KeepRunning)
@@ -111,19 +122,11 @@ void InputMgr::Tick(float dt)
         m_Engine->m_KeepRunning = false;
     }
     m_Mouse->capture();
-
 }
 
 void InputMgr::Stop()
 {
-    if(m_InputMgr)
-    {
-        m_InputMgr->destroyInputObject(m_Mouse);
-        m_InputMgr->destroyInputObject(m_Keyboard);
 
-        OIS::InputManager::destroyInputSystem(m_InputMgr);
-        m_InputMgr = 0;
-    }
 }
 
 
@@ -202,18 +205,30 @@ bool InputMgr::keyReleased(const OIS::KeyEvent& ke)
 
 bool InputMgr::mouseMoved(const OIS::MouseEvent& me)
 {
+    if(m_Engine->m_UiMgr->m_TrayMgr->injectMouseMove(me))
+    {
+        return true;
+    }
     return true;
 }
 
 bool InputMgr::mousePressed(const OIS::MouseEvent& me, OIS::MouseButtonID mid)
 {
     m_MouseButtonStatuses[mid] = true;
+    if(m_Engine->m_UiMgr->m_TrayMgr->injectMouseDown(me, mid))
+    {
+        return true;
+    }
     return true;
 }
 
 bool InputMgr::mouseReleased(const OIS::MouseEvent& me, OIS::MouseButtonID mid)
 {
     m_MouseButtonStatuses[mid] = false;
+    if(m_Engine->m_UiMgr->m_TrayMgr->injectMouseUp(me, mid))
+    {
+        return true;
+    }
     return true;
 }
 

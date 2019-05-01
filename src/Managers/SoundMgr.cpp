@@ -293,7 +293,7 @@ void SoundMgr::Tick(float dtime)
 
 void SoundMgr::Stop()
 {
-
+    stopBackground();
 }
 
 //this was for moving sound but playing sound for all moving objects does not seem to be a good idea

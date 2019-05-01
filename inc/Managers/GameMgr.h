@@ -27,6 +27,8 @@ public:
 	void MakeEntities();
 
 	Ogre::SceneNode *cameraNode;
+	
+	bool m_Restart;
 
 };
 

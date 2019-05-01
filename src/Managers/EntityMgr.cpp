@@ -71,7 +71,12 @@ void EntityMgr::Tick(float dt){
 
 void EntityMgr::Stop()
 {
-    
+    for(auto iter = m_Entities.begin(); iter != m_Entities.end(); iter++)
+    {
+        delete *iter;
+    }
+    std::cout << "EntityMgr" << std::endl;
+    m_Entities.clear();
 }
 
 

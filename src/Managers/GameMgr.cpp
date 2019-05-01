@@ -23,6 +23,7 @@ GameMgr::GameMgr(Engine *engine)
         : Mgr(engine)
 {
     cameraNode = 0;
+    m_Restart = false;
 }
 
 GameMgr::~GameMgr()
@@ -39,6 +40,8 @@ void GameMgr::Init()
 
 void GameMgr::LoadLevel(std::string levelLocation)
 {
+    cameraNode = 0;
+    
     m_Engine->m_GfxMgr->m_SceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
     m_Engine->m_GfxMgr->m_Camera->lookAt(Ogre::Vector3(0, 0, 0));
@@ -47,26 +50,36 @@ void GameMgr::LoadLevel(std::string levelLocation)
 
     // a fixed point in the ocean so you can see relative motion
 
-    Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->m_SceneMgr->createEntity("robot.mesh");
+    /*Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->m_SceneMgr->createEntity("robot.mesh");
     Ogre::SceneNode* sceneNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 100, -200));
     sceneNode->attachObject(ogreEntityFixed);
     sceneNode->showBoundingBox(true);
+    */
 
     // A node to attach the camera to so we can move the camera node instead of the camera.
     cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode("MainCamera");
     cameraNode->setPosition(0, 200, 500);
     //cameraNode->attachObject(m_Engine->m_GfxMgr->mCamera);
-    m_Engine->m_EntityMgr->GetPlayerByName("player1")->m_CameraNode->attachObject(m_Engine->m_GfxMgr->m_Camera);
+    PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
+    if(player != NULL)
+    {
+        player->m_CameraNode->attachObject(m_Engine->m_GfxMgr->m_Camera);
+    }
     
 
-    m_Engine->m_GfxMgr->MakeGround();
+    //m_Engine->m_GfxMgr->MakeGround();
     m_Engine->m_GfxMgr->MakeSky();
     MakeEntities();
 }
 
 void GameMgr::Tick(float dt)
 {
-
+    if(m_Restart)
+    {
+        m_Restart = false;
+        m_Engine->Cleanup();
+        m_Engine->LoadLevel(m_Engine->m_LevelToLoad);
+    }
 }
 
 void GameMgr::Stop()

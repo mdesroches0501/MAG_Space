@@ -11,6 +11,7 @@ enum AspectType
     UNIT_AI,
     INPUT,
     COLLIDER,
+    FOLLOW_PLAYER,
 };
 
 class Entity381;    //Forward declaration of the Entity381 class

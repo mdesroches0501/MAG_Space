@@ -23,6 +23,7 @@ Engine::Engine() {
 
 	m_KeepRunning = true;
 
+	m_LevelToLoad = "levels/MainMenu/";	
 }
 
 Engine::~Engine() {
@@ -46,14 +47,18 @@ void Engine::Init(){
 	m_UiMgr->Init();
 
 	//--------------------------------------------------------------
-	m_EntityMgr->LoadLevel("levels/level1/");
-	m_GfxMgr->LoadLevel("levels/level1/");
-	m_InputMgr->LoadLevel("levels/level1/");
-	m_SoundMgr->LoadLevel("levels/level1/");
-	m_GameMgr->LoadLevel("levels/level1/");
-	m_UiMgr->LoadLevel("levels/level1/");
+	LoadLevel(m_LevelToLoad);
 }
 
+void Engine::LoadLevel(std::string levelLocation)
+{
+    m_EntityMgr->LoadLevel(levelLocation);
+    m_GfxMgr->LoadLevel(levelLocation);
+    m_InputMgr->LoadLevel(levelLocation);
+    m_GameMgr->LoadLevel(levelLocation);
+    m_SoundMgr->LoadLevel(levelLocation);
+    m_UiMgr->LoadLevel(levelLocation);
+}
 
 void Engine::TickAll(float dt){
 	m_GfxMgr->Tick(dt);
@@ -87,10 +92,11 @@ void Engine::Run(){
 
 void Engine::Cleanup(){
 	m_InputMgr->Stop();
-	m_GfxMgr->Stop();
 	m_EntityMgr->Stop();
+	m_GfxMgr->Stop();
 	m_SoundMgr->Stop();
 	m_GameMgr->Stop();
 	m_UiMgr->Stop();
+	std::cout << "Stopped" << std::endl;
 }
 

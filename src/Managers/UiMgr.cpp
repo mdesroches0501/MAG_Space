@@ -51,11 +51,6 @@ void UiMgr::Init()
     //mTrayMgr->hideCursor();
 }
 
-void UiMgr::stop()
-{
-
-}
-
 void UiMgr::LoadLevel(std::string levelLocation)
 {
     //init sdktrays (Make sure to only do this once)
@@ -66,28 +61,51 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     m_TrayMgr->showBackdrop("ECSLENT/UI");
 
-    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_BOTTOM, "InfoEntityType", "No Unit Selected", 310);
-    m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 250);
-    m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntitySpeed", "No Unit Selected", 250);
-
-    PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
+    m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityType", "No Unit Selected", 370);
+    m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 370);
+    m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntitySpeed", "No Unit Selected", 370);
     
-    if(player == NULL)
-    {
-        std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
-    }
+    m_MainMenu = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "MainMenuButton", "Main Menu", 310);
+    m_Level1 = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "Level1Button", "Level 1", 310);
+    m_RestartButton = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "GameOverButton", "Restart?", 310);
+    
+    PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
     OgreBites::ProgressBar * pbar;
     pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOM, "HealthBar", "Health", 300, 200);
-    pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
-    std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
+    if(player == NULL)
+    {
+        std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
+        pbar->setProgress(0);
+        pbar->hide();
+    }
+    else
+    {
+        pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
+        std::cout << "UiMgr Health: " << player->m_Health << std::endl;         
+    }
     
-    m_Panel = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingletonPtr()->createOverlayElement("Panel","GUI"));
-    m_Panel->setMetricsMode(Ogre::GMM_PIXELS);
-    m_Panel->setPosition(0,0);
-    m_Panel->setDimensions(0.5f,0.5f);
-    m_Overlay = Ogre::OverlayManager::getSingletonPtr()->create("GUI_OVERLAY");
-    m_Overlay->add2D(m_Panel);
+    if(m_Panel == NULL)
+    {        
+        m_Panel = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingletonPtr()->createOverlayElement("Panel","GUI"));
+        m_Panel->setMetricsMode(Ogre::GMM_PIXELS);
+        m_Panel->setPosition(0,0);
+        m_Panel->setDimensions(0.5f,0.5f);
+        m_Overlay = Ogre::OverlayManager::getSingletonPtr()->create("GUI_OVERLAY");
+        m_Overlay->add2D(m_Panel);
+    }
+    
+    m_CurrentLevel = levelLocation;
+    
+    if(m_CurrentLevel == "levels/MainMenu/")
+    {
+        // Show title card
+    }
+    else
+    {
+        // Hide title card
+    }
+    
     
     std::string gameOver = "You are dead, deeaad deeaaad!";
     //m_TextArea = static_cast<Ogre::TextAreaOverlayElement*>(Ogre::OverlayManager::getSingletonPtr()->createOverlayElement("TextArea", gameOver));
@@ -101,7 +119,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
 void UiMgr::Tick(float dt)
 {
     m_TrayMgr->refreshCursor();
-
+    
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
     if(player != NULL)
@@ -115,12 +133,22 @@ void UiMgr::Tick(float dt)
     }
     else
     {
-        m_InfoEntityType->setCaption("Type: Dead");
-        m_InfoEntityName->setCaption("Name: Guitar Warrior");
-        m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
-        
         OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
-        pbar->setProgress(0);
+        if(m_CurrentLevel == "levels/MainMenu/")
+        {
+            m_InfoEntityType->setCaption("Mike");
+            m_InfoEntityName->setCaption("Alex");
+            m_InfoEntitySpeed->setCaption("Gianni");
+            pbar->hide();
+        }
+        else
+        {            
+            m_InfoEntityType->setCaption("Type: Dead");
+            m_InfoEntityName->setCaption("Name: Guitar Warrior");
+            m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
+            pbar->setProgress(0);
+        }
+        
     }
     
     //std::cout << "UiMgr Health: " << player->m_Health << std::endl; 
@@ -133,6 +161,12 @@ void UiMgr::Tick(float dt)
 //    {
 //        //m_Overlay->hide();
 //    }
+}
+
+void UiMgr::Stop()
+{
+    delete m_TrayMgr;
+    m_TrayMgr = NULL;
 }
 
 void UiMgr::windowResized(Ogre::RenderWindow* rw)
@@ -195,6 +229,20 @@ void UiMgr::buttonHit(OgreBites::Button *b)
     else if(b->getName() == "SelectButton")
     {
         std::cout << "Selection Changed!" << std::endl;
+    }
+    else if(b->getName() == "GameOverButton")
+    {
+        m_Engine->m_GameMgr->m_Restart = true;
+    }
+    else if(b->getName() == "MainMenuButton")
+    {
+        m_Engine->m_LevelToLoad = "levels/MainMenu/";
+        m_Engine->m_GameMgr->m_Restart = true;
+    }
+    else if(b->getName() == "Level1Button")
+    {
+        m_Engine->m_LevelToLoad = "levels/level1/";
+        m_Engine->m_GameMgr->m_Restart = true;
     }
 }
 

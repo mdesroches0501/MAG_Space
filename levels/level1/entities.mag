@@ -8,13 +8,13 @@ End
 Start
 EntityType asteroid
 Name asteroid1
-Coordinates 100 100 -50
+Coordinates 150 100 -50
 End
 
 Start
 EntityType asteroid
 Name asteroid2
-Coordinates 130 100 -50
+Coordinates 200 100 -50
 End
 
 Start
