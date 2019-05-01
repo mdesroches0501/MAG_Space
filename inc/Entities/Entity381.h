@@ -36,6 +36,7 @@ public:
     std::string m_Meshfilename;
     Ogre::SceneNode* m_SceneNode;
     Ogre::Entity* m_OgreEntity;
+    Ogre::SceneNode* m_MeshNode;
     Ogre::SceneNode* m_CameraNode;
 
     //dynamic data

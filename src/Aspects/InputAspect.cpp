@@ -54,11 +54,13 @@ void InputAspect::Tick(float dt)
             case PITCH_UP:
                 m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch += m_PlayerEntity->m_PitchRate * dt;
+                entity->m_SceneNode->roll(Ogre::Degree(m_PlayerEntity->m_PitchRate * dt));
                 //m_PlayerEntity->m_Orientation + Ogre::Quaternion(Ogre::Radian(m_PlayerEntity->m_PitchRate * dt), m_PlayerEntity->m_Orientation.xAxis());
                 break;
             case PITCH_DOWN:
                 m_PlayerEntity->m_OldPitch = m_PlayerEntity->m_Pitch;
                 m_PlayerEntity->m_Pitch -= m_PlayerEntity->m_PitchRate * dt;
+                entity->m_SceneNode->roll(Ogre::Degree((-1) * m_PlayerEntity->m_PitchRate * dt));
                 //m_PlayerEntity->m_Orientation + Ogre::Quaternion(Ogre::Radian(m_PlayerEntity->m_PitchRate * dt), m_PlayerEntity->m_Orientation.xAxis());
                 break;
             case YAW_LEFT:
@@ -70,10 +72,12 @@ void InputAspect::Tick(float dt)
                 m_PlayerEntity->m_Yaw += m_PlayerEntity->m_YawRate * dt;
                 break;
             case ROLL_LEFT:
+                entity->m_SceneNode->pitch(Ogre::Degree((-1) * m_PlayerEntity->m_RollRate * dt));
                 m_PlayerEntity->m_OldRoll = m_PlayerEntity->m_Roll;
                 m_PlayerEntity->m_Roll -= m_PlayerEntity->m_RollRate * dt;
                 break;
             case ROLL_RIGHT:
+                entity->m_SceneNode->pitch(Ogre::Degree(m_PlayerEntity->m_RollRate * dt));
                 m_PlayerEntity->m_OldRoll = m_PlayerEntity->m_Roll;
                 m_PlayerEntity->m_Roll += m_PlayerEntity->m_RollRate * dt;
                 break;
@@ -120,6 +124,7 @@ void InputAspect::Tick(float dt)
         }
     }
     
+    /*
     if(m_PlayerEntity->m_Engine->m_InputMgr->IsKeyDown(m_PlayerEntity->m_MappedInputs.right.find(Actions::YAW_LEFT)->second))
     {
         m_PlayerEntity->m_DesiredRoll = -30;
@@ -144,5 +149,5 @@ void InputAspect::Tick(float dt)
 			m_PlayerEntity->m_Roll = m_PlayerEntity->m_DesiredRoll;
 		}
     }
-    
+    */
 }

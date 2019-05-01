@@ -84,7 +84,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
         pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
         std::cout << "UiMgr Health: " << player->m_Health << std::endl;         
     }
-    
+    /*
     if(m_Panel == NULL)
     {        
         m_Panel = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingletonPtr()->createOverlayElement("Panel","GUI"));
@@ -94,7 +94,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
         m_Overlay = Ogre::OverlayManager::getSingletonPtr()->create("GUI_OVERLAY");
         m_Overlay->add2D(m_Panel);
     }
-    
+    */
     m_CurrentLevel = levelLocation;
     
     if(m_CurrentLevel == "levels/MainMenu/")

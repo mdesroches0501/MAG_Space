@@ -83,11 +83,13 @@ void Entity381::Init()
     m_OgreEntity = m_Engine->m_GfxMgr->m_SceneMgr->createEntity(m_Meshfilename);
     m_SceneNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode(m_Position);
     
-    m_CameraNode = m_SceneNode->createChildSceneNode();
+    m_MeshNode = m_SceneNode->createChildSceneNode();
+    m_MeshNode->attachObject(m_OgreEntity);
+    
+    m_CameraNode = m_MeshNode->createChildSceneNode();
     m_CameraNode->yaw(Ogre::Radian(Ogre::Degree(-90)));
     m_CameraNode->translate(-200, 50, 0);
 
-    m_SceneNode->attachObject(m_OgreEntity);
     
     m_SoundFile = "Boat-Sound.wav";
 

@@ -41,7 +41,8 @@ void Renderable::Tick(float dt)
     
     //entity->m_SceneNode->translate(translateVec, Ogre::Node::TS_LOCAL); //now ogre should render the sceneNode at the new position...
     entity->m_SceneNode->setPosition(entity->m_Position);
-    entity->m_SceneNode->resetOrientation(); // rotation is cumulative, so set current xyz-rotation to 0
+    //entity->m_SceneNode->resetOrientation(); // rotation is cumulative, so set current xyz-rotation to 0
+    //entity->m_MeshNode->resetOrientation();
     /*Ogre::Matrix3 localAxes = entity->m_SceneNode->getLocalAxes();
     Ogre::Quaternion xAxis(Ogre::Degree(entity->m_Pitch), Ogre::Vector3::UNIT_X);
     Ogre::Quaternion yAxis(Ogre::Degree(-entity->m_Yaw), Ogre::Vector3::UNIT_Y);
@@ -65,8 +66,8 @@ void Renderable::Tick(float dt)
     entity->m_OldRoll = entity->m_Roll;
     */
     
-    entity->m_SceneNode->yaw(Ogre::Degree(-entity->m_Yaw));
-    entity->m_SceneNode->pitch(Ogre::Degree(entity->m_Roll));
-    entity->m_SceneNode->roll(Ogre::Degree(entity->m_Pitch));
+    //entity->m_MeshNode->yaw(Ogre::Degree(-entity->m_Yaw));
+    //entity->m_MeshNode->pitch(Ogre::Degree(entity->m_Roll), Ogre::Node::TS_WORLD);
+    //entity->m_SceneNode->roll(Ogre::Degree(entity->m_Pitch), Ogre::Node::TS_WORLD);
     
 }

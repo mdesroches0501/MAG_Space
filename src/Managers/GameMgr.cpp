@@ -50,11 +50,11 @@ void GameMgr::LoadLevel(std::string levelLocation)
 
     // a fixed point in the ocean so you can see relative motion
 
-    /*Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->m_SceneMgr->createEntity("robot.mesh");
+    Ogre::Entity* ogreEntityFixed = m_Engine->m_GfxMgr->m_SceneMgr->createEntity("robot.mesh");
     Ogre::SceneNode* sceneNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 100, -200));
     sceneNode->attachObject(ogreEntityFixed);
     sceneNode->showBoundingBox(true);
-    */
+    
 
     // A node to attach the camera to so we can move the camera node instead of the camera.
     cameraNode = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode("MainCamera");
