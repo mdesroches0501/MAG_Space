@@ -58,13 +58,21 @@ public:
 	OgreBites::Button *m_MainMenu;
 	OgreBites::Button *m_Level1;
 	
+	OgreBites::SdkTrayManager *m_ShowLogo;
+
 	std::string m_CurrentLevel;
 	
 	Ogre::TextAreaOverlayElement *m_TextArea;
 	Ogre::OverlayContainer *m_Panel;
 	Ogre::Overlay* m_Overlay;
 	
+
+	// stuff we're playing with
+	unsigned char RENDER_QUEUE_BACKGROUND;
 	unsigned int m_PlayerCount = 5;
+	unsigned int numGroupsIniit = 1;
+	unsigned int numGroupsLoad = 1;
+	Ogre::Real initProportion = 0.7f;
 };
 
 #endif /* INC_UIMGR_H_ */

@@ -14,6 +14,8 @@
 #include <Managers/EntityMgr.h>
 #include <Utilities/Types381.h>
 
+#include <OgreRectangle2D.h>
+
 UiMgr::UiMgr(Engine* eng)
         : Mgr(eng)
 {
@@ -59,7 +61,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
         m_TrayMgr = new OgreBites::SdkTrayManager("InterfaceName", m_Engine->m_GfxMgr->m_Window, m_InputContext, this);
     }
     
-    m_TrayMgr->showBackdrop("ECSLENT/UI");
+  //  m_TrayMgr->showBackdrop("ECSLENT/UI");
 
     m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityType", "No Unit Selected", 370);
     m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 370);
@@ -99,7 +101,47 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     if(m_CurrentLevel == "levels/MainMenu/")
     {
-        // Show title card
+
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash", "MAG Space", 700);
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash1", "Instructions: select level, WASD for controls, watch out for asteroids!", 700);
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash2", "Created by: Michael Des Roches, Alex Pansinski, Gianni Pinneri (MAG)", 700);
+
+    	/*
+    	//m_TrayMgr->showLoadingBar(numGroupsIniit, numGroupsLoad, initProportion);
+    	//m_TrayMgr->showLogo(OgreBites::TL_CENTER, 1);
+    	// Create background material
+    	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create("Background", "General");
+    	material->getTechnique(0)->getPass(0)->createTextureUnitState("Rockwall.mesh");
+    	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+    	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+    	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+
+    	// Create background rectangle covering the whole screen
+    	Ogre::Rectangle2D* rect = new Ogre::Rectangle2D(true);
+    	rect->setCorners(-1.0, 1.0, 1.0, -1.0);
+    	rect->setMaterial("Background");
+
+    	// Render the background before everything else
+    	//rect->Ogre::RenderQueueGroupID::RENDER_QUEUE_BACKGROUND;
+    	rect->setRenderQueueGroup(Ogre::RenderQueueGroupID::RENDER_QUEUE_BACKGROUND);
+
+    	// Use infinite AAB to always stay visible
+    	Ogre::AxisAlignedBox aabInf;
+    	aabInf.setInfinite();
+    	rect->setBoundingBox(aabInf);
+
+    	// Attach background to the scene
+    	Ogre::SceneNode* node = m_Engine->m_GfxMgr->m_SceneMgr->getRootSceneNode()->createChildSceneNode("Background");
+    	node->attachObject(rect);
+
+    	// Example of background scrolling
+    	material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.25, 0.0);
+
+    	// Don't forget to delete the Rectangle2D in the destructor of your application:
+    	//delete rect;*/
+
+
+
     }
     else
     {
@@ -115,7 +157,6 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     //m_Panel->addChild(m_TextArea);
 }
-
 void UiMgr::Tick(float dt)
 {
     m_TrayMgr->refreshCursor();
