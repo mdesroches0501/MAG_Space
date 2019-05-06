@@ -73,18 +73,21 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
     
-    OgreBites::ProgressBar * pbar;
-    pbar = m_TrayMgr->createProgressBar(OgreBites::TL_BOTTOM, "HealthBar", "Health", 300, 200);
-    if(player == NULL)
+    if(m_CurrentLevel != "levels/MainMenu/")
     {
-        std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
-        pbar->setProgress(0);
-        pbar->hide();
-    }
-    else
-    {
-        pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
-        std::cout << "UiMgr Health: " << player->m_Health << std::endl;         
+        OgreBites::ProgressBar * pbar;        
+        pbar = m_TrayMgr->createProgressBar(OgreBites:: TL_BOTTOM, "HealthBar", "Health", 300, 200);
+        if(player == NULL)
+        {
+            std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
+            pbar->setProgress(0);
+            pbar->hide();
+        }
+        else
+        {
+            pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
+            std::cout << "UiMgr Health: " << player->m_Health << std::endl;         
+        }
     }
     /*
     if(m_Panel == NULL)
@@ -102,28 +105,28 @@ void UiMgr::LoadLevel(std::string levelLocation)
     if(m_CurrentLevel == "levels/MainMenu/")
     {
 
-    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash", "MAG Space", 700);
-    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash1", "Instructions: select level, WASD for controls, watch out for asteroids!", 700);
-    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_CENTER, "TempSplash2", "Created by: Michael Des Roches, Alex Pansinski, Gianni Pinneri (MAG)", 700);
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_TOP, "TempSplash", "MAG Space", 700);
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_TOP, "TempSplash1", "Instructions: select level, WASD for controls, watch out for asteroids!", 700);
+    	m_Label = m_TrayMgr->createLabel(OgreBites::TL_TOP, "TempSplash2", "Created by: Michael Des Roches, Alex Pansinski, Gianni Pinneri (MAG)", 700);
 
-    	/*
+    	
     	//m_TrayMgr->showLoadingBar(numGroupsIniit, numGroupsLoad, initProportion);
     	//m_TrayMgr->showLogo(OgreBites::TL_CENTER, 1);
     	// Create background material
     	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create("Background", "General");
-    	material->getTechnique(0)->getPass(0)->createTextureUnitState("Rockwall.mesh");
+    	material->getTechnique(0)->getPass(0)->createTextureUnitState("splash.png");
     	material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
     	material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
     	material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
 
     	// Create background rectangle covering the whole screen
     	Ogre::Rectangle2D* rect = new Ogre::Rectangle2D(true);
-    	rect->setCorners(-1.0, 1.0, 1.0, -1.0);
+    	rect->setCorners(-0.3, 0.5, 0.3, -0.5);
     	rect->setMaterial("Background");
 
     	// Render the background before everything else
     	//rect->Ogre::RenderQueueGroupID::RENDER_QUEUE_BACKGROUND;
-    	rect->setRenderQueueGroup(Ogre::RenderQueueGroupID::RENDER_QUEUE_BACKGROUND);
+    	//rect->setRenderQueueGroup(Ogre::RenderQueueGroupID::RENDER_QUEUE_BACKGROUND);
 
     	// Use infinite AAB to always stay visible
     	Ogre::AxisAlignedBox aabInf;
@@ -135,7 +138,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
     	node->attachObject(rect);
 
     	// Example of background scrolling
-    	material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.25, 0.0);
+    	//material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.25, 0.0);
 
     	// Don't forget to delete the Rectangle2D in the destructor of your application:
     	//delete rect;*/
@@ -174,16 +177,15 @@ void UiMgr::Tick(float dt)
     }
     else
     {
-        OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
         if(m_CurrentLevel == "levels/MainMenu/")
         {
             m_InfoEntityType->setCaption("Mike");
             m_InfoEntityName->setCaption("Alex");
             m_InfoEntitySpeed->setCaption("Gianni");
-            pbar->hide();
         }
         else
         {            
+            OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
             m_InfoEntityType->setCaption("Type: Dead");
             m_InfoEntityName->setCaption("Name: Guitar Warrior");
             m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
