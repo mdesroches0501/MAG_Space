@@ -1,0 +1,35 @@
+material MAG/SpaceSkyBox
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				cubic_texture spacecube.jpg separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material MAG/SceneSkyBox1
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				cubic_texture spacecube_fr.jpg spacecube_bk.jpg spacecube_lf.jpg spacecube_rt.jpg spacecube_up.jpg spacecube_dn.jpg separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
