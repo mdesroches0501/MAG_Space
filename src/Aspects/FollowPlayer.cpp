@@ -12,8 +12,8 @@
 FollowPlayerAspect::FollowPlayerAspect(Entity381* ent, AspectType aspectType)
         : Aspect(ent, aspectType)
 {
-    m_FollowRadius = 0;
-    m_FollowSpeed = 50;
+    m_FollowRadius = 150;
+    m_FollowSpeed = 25;
     m_PlayerEntity = entity->m_Engine->m_EntityMgr->GetPlayerByName("player1");
 }
 
@@ -30,7 +30,7 @@ void FollowPlayerAspect::Tick(float dt)
         {
             Ogre::Vector3 targetLocation = m_PlayerEntity->m_Position;
             Ogre::Vector3 diff = targetLocation - entity->m_Position;
-            entity->m_Position += (diff.normalisedCopy() * dt * 100);
+            entity->m_Position += (diff.normalisedCopy() * dt * m_FollowSpeed);
             //float angle = atan2(diff.z, diff.x);
             //entity->m_SceneNode->pitch(Ogre::Radian(angle));
             //entity->m_SceneNode->translate(diff/2);

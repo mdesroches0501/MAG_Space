@@ -53,6 +53,7 @@ public:
 	OgreBites::Label *m_InfoEntityType;
 	OgreBites::Label *m_InfoEntityName;
 	OgreBites::Label *m_InfoEntitySpeed;
+	OgreBites::Label *m_InfoScore;
 	
 	OgreBites::Button *m_RestartButton;
 	OgreBites::Button *m_MainMenu;
@@ -66,6 +67,7 @@ public:
 	Ogre::OverlayContainer *m_Panel;
 	Ogre::Overlay* m_Overlay;
 	
+	unsigned int m_PlayerScore;
 
 	// stuff we're playing with
 	unsigned char RENDER_QUEUE_BACKGROUND;
@@ -73,6 +75,7 @@ public:
 	unsigned int numGroupsIniit = 1;
 	unsigned int numGroupsLoad = 1;
 	Ogre::Real initProportion = 0.7f;
+	
 };
 
 #endif /* INC_UIMGR_H_ */

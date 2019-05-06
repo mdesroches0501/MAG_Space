@@ -26,11 +26,6 @@ public:
     virtual ~AsteroidEntity381();
     
     void Init();
-
-    boost::bimap<OIS::KeyCode, Actions> m_MappedInputs;
-
-    unsigned int m_Health;
-    unsigned int m_MaxHealth;
 };
 
 

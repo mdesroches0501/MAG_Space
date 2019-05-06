@@ -28,3 +28,15 @@ EntityType asteroid
 Name asteroid4
 Coordinates 720 0 0
 End
+
+Start
+EntityType pickup
+Name pickup1
+Coordinates 200 100 -100
+End
+
+Start
+EntityType pickup
+Name pickup2
+Coordinates 200 100 -150
+End

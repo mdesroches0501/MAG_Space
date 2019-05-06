@@ -25,6 +25,8 @@ UiMgr::UiMgr(Engine* eng)
     m_InfoEntityType = NULL;
     m_InfoEntityName = NULL;
     m_InfoEntitySpeed = NULL;
+    
+    m_PlayerScore = 0;
 }
 
 UiMgr::~UiMgr()
@@ -66,6 +68,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
     m_InfoEntityType = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityType", "No Unit Selected", 370);
     m_InfoEntityName = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntityName", "No Unit Selected", 370);
     m_InfoEntitySpeed = m_TrayMgr->createLabel(OgreBites::TL_RIGHT, "InfoEntitySpeed", "No Unit Selected", 370);
+    m_InfoScore = m_TrayMgr->createLabel(OgreBites::TL_BOTTOM, "InfoScore", "", 370);
     
     m_MainMenu = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "MainMenuButton", "Main Menu", 310);
     m_Level1 = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "Level1Button", "Level 1", 310);
@@ -82,11 +85,14 @@ void UiMgr::LoadLevel(std::string levelLocation)
             std::cerr << "UiMgr::LoadLevel : No Player Found!" << std::endl;
             pbar->setProgress(0);
             pbar->hide();
+            m_InfoScore->hide();
         }
         else
         {
             pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
-            std::cout << "UiMgr Health: " << player->m_Health << std::endl;         
+            std::cout << "UiMgr Health: " << player->m_Health << std::endl;
+            m_InfoScore->setCaption("Score: " + std::to_string(m_PlayerScore));
+            m_InfoScore->show();
         }
     }
     /*
@@ -174,6 +180,7 @@ void UiMgr::Tick(float dt)
         
         OgreBites::ProgressBar* pbar = (OgreBites::ProgressBar*)m_TrayMgr->getWidget("HealthBar");
         pbar->setProgress(player->m_Health / (float)player->m_MaxHealth);
+        m_InfoScore->setCaption("Score: " + std::to_string(m_PlayerScore));
     }
     else
     {
@@ -189,6 +196,7 @@ void UiMgr::Tick(float dt)
             m_InfoEntityType->setCaption("Type: Dead");
             m_InfoEntityName->setCaption("Name: Guitar Warrior");
             m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
+            m_InfoScore->setCaption("Your final score was: " + std::to_string(m_PlayerScore));
             pbar->setProgress(0);
         }
         

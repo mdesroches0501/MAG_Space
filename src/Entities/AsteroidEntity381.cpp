@@ -14,7 +14,7 @@
 AsteroidEntity381::AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
 {
-    m_Meshfilename = "ddg51.mesh";
+    m_Meshfilename = "sphere.mesh";
     m_EntityType = ASTEROID_TYPE;
 
     m_Acceleration = 50;
@@ -27,8 +27,6 @@ AsteroidEntity381::AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::str
     m_Altitude = m_Position.y;
     m_MaxAltitude = 1000;
     m_MinAltitude = 10;
-
-    m_Health = m_MaxHealth = 100;
     
     AsteroidCollider* asteroidCollider = new AsteroidCollider(this, COLLIDER);
     m_Aspects.insert(std::pair<AspectType, Aspect*>(AspectType::COLLIDER, (Aspect*)asteroidCollider)); 

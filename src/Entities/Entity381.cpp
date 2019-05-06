@@ -50,6 +50,7 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, std::string name)
     m_Yaw = m_Roll = m_Pitch = m_OldYaw = m_OldRoll = m_OldPitch = 0;
 
     m_SceneNode = 0;
+    m_MeshNode = 0;
     m_CameraNode = 0;
     m_OgreEntity = 0;
     

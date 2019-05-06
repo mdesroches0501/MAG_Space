@@ -12,6 +12,7 @@
 
 #include <Entities/PlayerEntity381.h>
 #include <Entities/AsteroidEntity381.h>
+#include <Entities/PickUpEntity381.h>
 #include <Aspects/Aspect.h>
 #include <Utilities/Types381.h>
 
@@ -45,6 +46,16 @@ class AsteroidCollider : public ColliderAspect
 public:
     AsteroidCollider(AsteroidEntity381* ent, AspectType aspectType);
     ~AsteroidCollider();
+    
+    void Collided();
+};
+
+
+class PickUpCollider : public ColliderAspect
+{
+public:
+    PickUpCollider(PickUpEntity381* ent, AspectType aspectType);
+    ~PickUpCollider();
     
     void Collided();
 };

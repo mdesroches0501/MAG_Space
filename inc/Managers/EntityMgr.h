@@ -12,6 +12,7 @@
 //#include <Entities/EnemyEntity381.h>
 #include <Utilities/Types381.h>
 #include <Entities/AsteroidEntity381.h>
+#include <Entities/PickUpEntity381.h>
 
 
 struct EntityRequirements

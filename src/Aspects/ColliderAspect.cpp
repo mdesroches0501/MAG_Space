@@ -11,6 +11,7 @@
 #include <Aspects/ColliderAspect.h>
 #include <Entities/Entity381.h>
 #include <Managers/EntityMgr.h>
+#include <Managers/UiMgr.h>
 
 ColliderAspect::ColliderAspect(Entity381* ent, AspectType aspectType)
         : Aspect(ent, aspectType)
@@ -78,6 +79,7 @@ void PlayerCollider::Collided()
         std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
         break;
     case PICKUP_TYPE:
+        entity->m_Engine->m_UiMgr->m_PlayerScore += 10;
         std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
         break;
     default:
@@ -99,6 +101,43 @@ AsteroidCollider::~AsteroidCollider()
 }
 
 void AsteroidCollider::Collided()
+{
+    EntityTypes entType = m_CollidedEntity->m_EntityType;
+    switch(entType)
+    {
+    case ASTEROID_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    case PLAYER_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        entity->m_DeleteNextTick = true;
+        std::cout << entity->m_Name << "Deleted" << std::endl;
+        break;
+    case ENEMY_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    case PICKUP_TYPE:
+        std::cout << entity->m_Name + " collided with " + m_CollidedEntity->m_Name << std::endl;
+        break;
+    default:
+        break;
+    }
+}
+
+
+
+PickUpCollider::PickUpCollider(PickUpEntity381* ent, AspectType aspectType)
+        : ColliderAspect(ent, aspectType)
+{
+    m_CollisionRadius = 40;
+}
+
+PickUpCollider::~PickUpCollider()
+{
+    
+}
+
+void PickUpCollider::Collided()
 {
     EntityTypes entType = m_CollidedEntity->m_EntityType;
     switch(entType)

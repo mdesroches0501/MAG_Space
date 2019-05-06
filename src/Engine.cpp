@@ -52,6 +52,7 @@ void Engine::Init(){
 
 void Engine::LoadLevel(std::string levelLocation)
 {
+    m_UiMgr->m_CurrentLevel = m_LevelToLoad;
     m_EntityMgr->LoadLevel(levelLocation);
     m_GfxMgr->LoadLevel(levelLocation);
     m_InputMgr->LoadLevel(levelLocation);
