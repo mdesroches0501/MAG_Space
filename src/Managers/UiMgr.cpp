@@ -72,6 +72,7 @@ void UiMgr::LoadLevel(std::string levelLocation)
     
     m_MainMenu = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "MainMenuButton", "Main Menu", 310);
     m_Level1 = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "Level1Button", "Level 1", 310);
+    m_Level2 = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "Level2Button", "Level 2", 310);
     m_RestartButton = m_TrayMgr->createButton(OgreBites::TL_TOPLEFT, "GameOverButton", "Restart?", 310);
     
     PlayerEntity381* player = m_Engine->m_EntityMgr->GetPlayerByName("player1");
@@ -293,6 +294,11 @@ void UiMgr::buttonHit(OgreBites::Button *b)
     else if(b->getName() == "Level1Button")
     {
         m_Engine->m_LevelToLoad = "levels/level1/";
+        m_Engine->m_GameMgr->m_Restart = true;
+    }
+    else if(b->getName() == "Level2Button")
+    {
+        m_Engine->m_LevelToLoad = "levels/level2/";
         m_Engine->m_GameMgr->m_Restart = true;
     }
 }

@@ -58,6 +58,7 @@ public:
 	OgreBites::Button *m_RestartButton;
 	OgreBites::Button *m_MainMenu;
 	OgreBites::Button *m_Level1;
+	OgreBites::Button *m_Level2;
 	
 	OgreBites::SdkTrayManager *m_ShowLogo;
 

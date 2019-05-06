@@ -13,7 +13,7 @@
 PickUpEntity381::PickUpEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : Entity381(engine, pos, name)
 {
-    m_Meshfilename = "ddg51.mesh";
+    m_Meshfilename = "Barrel.mesh";
     m_EntityType = PICKUP_TYPE;
     
     PickUpCollider* pickupCollider = new PickUpCollider(this, COLLIDER);
