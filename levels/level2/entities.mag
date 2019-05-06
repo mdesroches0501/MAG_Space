@@ -1,0 +1,90 @@
+Start
+EntityType player
+Name player1
+Coordinates 0 100 -50
+camera PlayerCam1
+End
+
+Start
+EntityType asteroid
+Name asteroid1
+Coordinates 200 100 -50
+End
+
+Start
+EntityType asteroid
+Name asteroid2
+Coordinates 300 250 -150
+End
+
+Start
+EntityType asteroid
+Name asteroid3
+Coordinates 700 300 0
+End
+
+Start
+EntityType asteroid
+Name asteroid4
+Coordinates 720 -200 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid5
+Coordinates 620 -50 -40
+End
+
+Start
+EntityType asteroid
+Name asteroid6
+Coordinates 320 500 70
+End
+
+Start
+EntityType asteroid
+Name asteroid7
+Coordinates 720 700 60
+End
+
+Start
+EntityType asteroid
+Name asteroid8
+Coordinates 820 550 70
+End
+
+Start
+EntityType pickup
+Name pickup1
+Coordinates 200 100 -100
+End
+
+Start
+EntityType pickup
+Name pickup2
+Coordinates 200 100 -150
+End
+
+Start
+EntityType pickup
+Name pickup3
+Coordinates 400 100 -150
+End
+
+Start
+EntityType pickup
+Name pickup4
+Coordinates 400 100 -200
+End
+
+Start
+EntityType pickup
+Name pickup5
+Coordinates 600 300 -250
+End
+
+Start
+EntityType pickup
+Name pickup6
+Coordinates 700 400 -250
+End
