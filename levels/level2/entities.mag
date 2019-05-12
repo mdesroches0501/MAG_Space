@@ -1,90 +1,390 @@
 Start
 EntityType player
 Name player1
-Coordinates 0 100 -50
+Coordinates 400 100 50
 camera PlayerCam1
-End
-
-Start
-EntityType asteroid
-Name asteroid1
-Coordinates 200 100 -50
-End
-
-Start
-EntityType asteroid
-Name asteroid2
-Coordinates 300 250 -150
-End
-
-Start
-EntityType asteroid
-Name asteroid3
-Coordinates 700 300 0
-End
-
-Start
-EntityType asteroid
-Name asteroid4
-Coordinates 720 -200 -100
-End
-
-Start
-EntityType asteroid
-Name asteroid5
-Coordinates 620 -50 -40
-End
-
-Start
-EntityType asteroid
-Name asteroid6
-Coordinates 320 500 70
-End
-
-Start
-EntityType asteroid
-Name asteroid7
-Coordinates 720 700 60
-End
-
-Start
-EntityType asteroid
-Name asteroid8
-Coordinates 820 550 70
 End
 
 Start
 EntityType pickup
 Name pickup1
-Coordinates 200 100 -100
+Coordinates 710 300 0
 End
 
 Start
 EntityType pickup
 Name pickup2
-Coordinates 200 100 -150
+Coordinates 750 320 100
 End
 
 Start
 EntityType pickup
 Name pickup3
-Coordinates 400 100 -150
+Coordinates 800 300 -150
 End
 
 Start
 EntityType pickup
 Name pickup4
-Coordinates 400 100 -200
+Coordinates 300 400 150
 End
 
 Start
 EntityType pickup
 Name pickup5
-Coordinates 600 300 -250
+Coordinates 350 100 -50
 End
 
 Start
 EntityType pickup
 Name pickup6
-Coordinates 700 400 -250
+Coordinates 370 50 -10
+End
+
+Start
+EntityType asteroid
+Name asteroid1
+Coordinates 700 300 0
+End
+
+Start
+EntityType asteroid
+Name asteroid2
+Coordinates 720 50 0
+End
+
+Start
+EntityType asteroid
+Name asteroid3
+Coordinates 720 100 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid4
+Coordinates 800 50 -35
+End
+
+Start
+EntityType asteroid
+Name asteroid5
+Coordinates 500 50 100
+End
+
+Start
+EntityType asteroid
+Name asteroid6
+Coordinates 900 200 10
+End
+
+Start
+EntityType asteroid
+Name asteroid7
+Coordinates 820 250 50
+End
+
+Start
+EntityType asteroid
+Name asteroid8
+Coordinates 850 150 75
+End
+
+Start
+EntityType asteroid
+Name asteroid9
+Coordinates 500 200 100
+End
+
+Start
+EntityType asteroid
+Name asteroid10
+Coordinates 600 150 300
+End
+
+Start
+EntityType pickup
+Name pickup7
+Coordinates 710 -300 0
+End
+
+Start
+EntityType pickup
+Name pickup8
+Coordinates 750 -320 100
+End
+
+Start
+EntityType pickup
+Name pickup9
+Coordinates 800 -300 -150
+End
+
+Start
+EntityType pickup
+Name pickup10
+Coordinates 300 -400 150
+End
+
+Start
+EntityType pickup
+Name pickup11
+Coordinates 350 -100 -50
+End
+
+Start
+EntityType pickup
+Name pickup12
+Coordinates 370 -50 -10
+End
+
+Start
+EntityType asteroid
+Name asteroid11
+Coordinates 700 -300 0
+End
+
+Start
+EntityType asteroid
+Name asteroid12
+Coordinates 720 -50 0
+End
+
+Start
+EntityType asteroid
+Name asteroid13
+Coordinates 720 -100 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid14
+Coordinates 800 -50 -35
+End
+
+Start
+EntityType asteroid
+Name asteroid15
+Coordinates 500 -50 100
+End
+
+Start
+EntityType asteroid
+Name asteroid16
+Coordinates 900 -200 10
+End
+
+Start
+EntityType asteroid
+Name asteroid17
+Coordinates 820 -250 50
+End
+
+Start
+EntityType asteroid
+Name asteroid18
+Coordinates 850 -150 75
+End
+
+Start
+EntityType asteroid
+Name asteroid19
+Coordinates 500 -200 100
+End
+
+Start
+EntityType asteroid
+Name asteroid20
+Coordinates 600 -150 300
+End
+
+Start
+EntityType pickup
+Name pickup13
+Coordinates -710 -300 0
+End
+
+Start
+EntityType pickup
+Name pickup14
+Coordinates -750 -320 100
+End
+
+Start
+EntityType pickup
+Name pickup15
+Coordinates -800 -300 -150
+End
+
+Start
+EntityType pickup
+Name pickup16
+Coordinates -300 -400 150
+End
+
+Start
+EntityType pickup
+Name pickup17
+Coordinates 350 -100 -50
+End
+
+Start
+EntityType pickup
+Name pickup18
+Coordinates 370 -50 -10
+End
+
+Start
+EntityType asteroid
+Name asteroid21
+Coordinates -700 -300 0
+End
+
+Start
+EntityType asteroid
+Name asteroid22
+Coordinates -720 -50 0
+End
+
+Start
+EntityType asteroid
+Name asteroid23
+Coordinates -720 -100 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid24
+Coordinates -800 -50 -35
+End
+
+Start
+EntityType asteroid
+Name asteroid25
+Coordinates -500 -50 100
+End
+
+Start
+EntityType asteroid
+Name asteroid26
+Coordinates -900 -200 10
+End
+
+Start
+EntityType asteroid
+Name asteroid27
+Coordinates -820 -250 50
+End
+
+Start
+EntityType asteroid
+Name asteroid28
+Coordinates -850 -150 75
+End
+
+Start
+EntityType asteroid
+Name asteroid29
+Coordinates -500 -200 100
+End
+
+Start
+EntityType asteroid
+Name asteroid30
+Coordinates -600 -150 300
+End
+
+Start
+EntityType pickup
+Name pickup19
+Coordinates 710 -300 100
+End
+
+Start
+EntityType pickup
+Name pickup20
+Coordinates 750 -320 -100
+End
+
+Start
+EntityType pickup
+Name pickup21
+Coordinates 800 -300 150
+End
+
+Start
+EntityType pickup
+Name pickup22
+Coordinates 300 -400 -150
+End
+
+Start
+EntityType pickup
+Name pickup23
+Coordinates 350 -100 50
+End
+
+Start
+EntityType pickup
+Name pickup24
+Coordinates 370 -50 10
+End
+
+Start
+EntityType asteroid
+Name asteroid31
+Coordinates 700 -300 40
+End
+
+Start
+EntityType asteroid
+Name asteroid32
+Coordinates 720 -50 65
+End
+
+Start
+EntityType asteroid
+Name asteroid33
+Coordinates 720 -100 100
+End
+
+Start
+EntityType asteroid
+Name asteroid34
+Coordinates 800 -50 35
+End
+
+Start
+EntityType asteroid
+Name asteroid35
+Coordinates 500 -50 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid36
+Coordinates 900 -200 -10
+End
+
+Start
+EntityType asteroid
+Name asteroid37
+Coordinates 820 -250 -50
+End
+
+Start
+EntityType asteroid
+Name asteroid38
+Coordinates 850 -150 -75
+End
+
+Start
+EntityType asteroid
+Name asteroid39
+Coordinates 500 -200 -100
+End
+
+Start
+EntityType asteroid
+Name asteroid40
+Coordinates 600 -150 -300
 End

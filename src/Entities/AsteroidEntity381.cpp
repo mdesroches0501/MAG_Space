@@ -14,7 +14,7 @@
 AsteroidEntity381::AsteroidEntity381(Engine *engine, Ogre::Vector3 pos, std::string name)
         : FlyingEntity381(engine, pos, name)
 {
-    m_Meshfilename = "sphere.mesh";
+    m_Meshfilename = "Asteroid.mesh";
     m_EntityType = ASTEROID_TYPE;
 
     m_Acceleration = 50;
@@ -45,5 +45,5 @@ AsteroidEntity381::~AsteroidEntity381()
 void AsteroidEntity381::Init()
 {
     Entity381::Init();
-    m_SceneNode->scale(0.2, 0.2, 0.2);
+    m_SceneNode->scale(0.04, 0.04, 0.04);
 }
