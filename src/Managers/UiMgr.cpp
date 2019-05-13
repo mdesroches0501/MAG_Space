@@ -197,7 +197,7 @@ void UiMgr::Tick(float dt)
             m_InfoEntityType->setCaption("Type: Dead");
             m_InfoEntityName->setCaption("Name: Guitar Warrior");
             m_InfoEntitySpeed->setCaption("YOU ARE DEAD, DEEEAD DEEAAAD!");
-            m_InfoScore->setCaption("Your final score was: " + std::to_string(m_PlayerScore));
+            m_InfoScore->setCaption("Your lousy score was: " + std::to_string(m_PlayerScore));
             pbar->setProgress(0);
         }
         

@@ -30,5 +30,6 @@ PickUpEntity381::~PickUpEntity381()
 void PickUpEntity381::Init()
 {
     Entity381::Init();
-    m_SceneNode->scale(1.4, 1.4, 1.4);
+    //m_SceneNode->scale(1.4, 1.4, 1.4);
+    m_SceneNode->scale(2, 2, 2);
 }

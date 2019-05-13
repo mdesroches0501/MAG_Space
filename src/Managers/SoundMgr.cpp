@@ -143,7 +143,101 @@ void SoundMgr::initialize(void)
         alSourcei(this->battleSoundSource, AL_MAX_DISTANCE, 8000.0f);
     }
 
+    if(this->reserveAudio(deadMusicFilename, false, sid))
+    {
+        deadSoundSource = sourceInfo[sid].source;
+        //playDeadSound();
+    }
+    
     return;
+
+}
+
+bool SoundMgr::loadPlayDeadSound()
+{
+    //WaveInfo *wave;
+
+    alGenSources((ALuint)1, &this->deadSoundSource);
+    printError("Cannot generate source with id 1");
+
+    alSourcef(this->deadSoundSource, AL_PITCH, 1);
+    printError("Source pitch");
+
+    alSourcef(this->deadSoundSource, AL_GAIN, 0.25);
+    printError("Source Gain");
+
+    alSource3f(this->deadSoundSource, AL_POSITION, 0, 0, 0);
+    printError("Source position");
+
+    alSource3f(this->deadSoundSource, AL_VELOCITY, 0, 0, 0);
+    printError("Source velocity");
+
+    alSourcei(this->deadSoundSource, AL_LOOPING, AL_TRUE);
+    printError("Source looping");
+
+    alGenBuffers(1, &this->deadSoundBuffer);
+    printError("Buffer generation");
+
+    std::string fqfn = getFQFNFromFilename(deadMusicFilename);
+    std::cout << "SoundManager deadMusic file: " << fqfn << " is being readied" << std::endl;
+    if(fqfn == "")
+        return false;
+
+    this->deadWaveInfo = WaveOpenFileForReading(fqfn.c_str());
+    if(!this->deadWaveInfo)
+    {
+        std::cerr << "ERROR: Cannot open wave file for reading" << std::endl;
+        return false;
+    }
+    int ret = WaveSeekFile(0, this->deadWaveInfo);
+    if(ret)
+    {
+        std::cerr << "ERROR: Cannot seek" << std::endl;
+        return false;
+    }
+    char *tmpBuf = (char *)malloc(this->deadWaveInfo->dataSize);
+    //this->backgroundBufferData = (char *) malloc(this->backgroundWaveInfo->dataSize);
+    if(!tmpBuf)
+    {
+        std::cerr << "ERROR: in malloc" << std::endl;
+        return false;
+    }
+    ret = WaveReadFile(tmpBuf, this->deadWaveInfo->dataSize, this->deadWaveInfo);
+    if(ret != (int)this->deadWaveInfo->dataSize)
+    {
+        std::cerr << "ERROR: short read " << ret << " wanted: " << this->deadWaveInfo->dataSize << std::endl;
+        return false;
+    }
+    alBufferData(this->deadSoundBuffer, toALFormat(this->deadWaveInfo->channels, this->deadWaveInfo->bitsPerSample), tmpBuf,
+            this->deadWaveInfo->dataSize, this->deadWaveInfo->sampleRate);
+    if(printError("Failed to load bufferData") < 0)
+    {
+        return false;
+    }
+
+    free(tmpBuf);
+
+    alSourcei(this->deadSoundSource, AL_BUFFER, this->deadSoundBuffer);
+    printError("Source binding");
+
+    alSourcePlay(this->deadSoundSource);
+    printError("Playing");
+
+    return true;
+}
+
+bool SoundMgr::stopDeadSound()
+{
+
+    alSourceStop(this->deadSoundSource);
+    if(printError("Stop death music") < 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 
 }
 
@@ -270,7 +364,7 @@ void SoundMgr::LoadLevel(std::string levelLocation)
     //read sound files
 
     //load background, start, loop
-    //loadStartBackground();
+    loadStartBackground();
 
     return;
 }
@@ -294,6 +388,7 @@ void SoundMgr::Tick(float dtime)
 void SoundMgr::Stop()
 {
     stopBackground();
+    stopDeadSound();
 }
 
 //this was for moving sound but playing sound for all moving objects does not seem to be a good idea

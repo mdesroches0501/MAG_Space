@@ -48,7 +48,9 @@ PlayerEntity381::~PlayerEntity381()
     m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setPosition(m_CameraNode->getPosition());
     m_Engine->m_GfxMgr->m_SceneMgr->getSceneNode("MainCamera")->setOrientation(m_CameraNode->getOrientation());
     
-    m_Engine->m_SoundMgr->loadStartBackground();
+    //m_Engine->m_SoundMgr->loadStartBackground();
+    m_Engine->m_SoundMgr->stopBackground();
+    m_Engine->m_SoundMgr->loadPlayDeadSound();
 }
 
 

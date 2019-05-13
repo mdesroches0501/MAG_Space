@@ -29,7 +29,8 @@ class Entity381;
 const int soundPerEnt = 3;      // max different sounds to randomly choose per entity
 const int maxAudioBuffers = 63; // + 1 for background music
 const int maxAudioSources = 15; // + 1 for background music
-const std::string backgroundMusicFilename = "data/watercraft/sounds/you-are-dead.wav";
+const std::string backgroundMusicFilename = "data/watercraft/sounds/backgroundMusic.wav";
+const std::string deadMusicFilename = "data/watercraft/sounds/you-are-dead.wav";
 ///home/sushil/workspace/fe1/
 
 typedef struct
@@ -63,7 +64,9 @@ private:
     //Special treatment for background source and buffer
     ALuint backgroundMusicBuffer, backgroundMusicSource;
     ALuint battleSoundSource; //default battle sound source, not entity specific
+    ALuint deadSoundBuffer, deadSoundSource;
     WaveInfo *backgroundWaveInfo;
+    WaveInfo *deadWaveInfo;
     //unsigned int scvId;
     //unsigned int soundDictionary[FastEcslent::NENTITYTYPES];
     std::vector<std::string> sourceDictionary;
@@ -87,6 +90,8 @@ public:
     ~SoundMgr();
     //default methods
     void initialize();
+    bool loadPlayDeadSound();
+    bool stopDeadSound();
     void crosslink();
     void Init();
     void LoadLevel(std::string levelLocation);
