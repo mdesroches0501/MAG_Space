@@ -187,9 +187,9 @@ void UiMgr::Tick(float dt)
     {
         if(m_CurrentLevel == "levels/MainMenu/")
         {
-            m_InfoEntityType->setCaption("Mike");
-            m_InfoEntityName->setCaption("Alex");
-            m_InfoEntitySpeed->setCaption("Gianni");
+            m_InfoEntityType->setCaption("Mike - Lead Artist");
+            m_InfoEntityName->setCaption("Alex - Lead Programmer");
+            m_InfoEntitySpeed->setCaption("Gianni - Lead Producer");
         }
         else
         {            
